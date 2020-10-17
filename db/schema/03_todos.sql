@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS todos CASCADE;
+
+CREATE TABLE todos (
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  complete BOOLEAN NOT NULL DEFAULT FALSE,
+  user_id INTEGER REFERENCES users(id),
+  category_id INTEGER REFERENCES categories(id)
+);
