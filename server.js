@@ -41,7 +41,7 @@ const widgetsRoutes = require("./routes/widgets");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
-
+const { checkMovieDB } = require('./public/scripts/movies_api');
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -52,4 +52,7 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
+  console.log(checkMovieDB("A Bug's Life"));
 });
+
+
