@@ -494,7 +494,7 @@ insert into todos (id, title, description, complete, user_id, category_id) value
 insert into todos (id, title, description, complete, user_id, category_id) values (494, 'Ten Shrews, The (Kymmenen riivinrautaa)', 'Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.', false, 1, 2);
 insert into todos (id, title, description, complete, user_id, category_id) values (495, 'That Guy... Who Was in That Thing', 'Aliquam erat volutpat.', false, 6, 3);
 insert into todos (id, title, description, complete, user_id, category_id) values (496, 'Once Upon a Time in Mexico', 'Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.', false, 7, 1);
-insert into todos (id, title, description, complete, user_id, category_id) values (497, 'In the Valley of Elah', 'Nulla nisl.', false, 8, 2);
-insert into todos (id, title, description, complete, user_id, category_id) values (498, 'Caveman', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.', true, 4, 4);
-insert into todos (id, title, description, complete, user_id, category_id) values (499, 'Noah''s Ark', 'Duis at velit eu est congue elementum.', true, 3, 4);
-insert into todos (id, title, description, complete, user_id, category_id) values (500, 'Border Run (Mule, The)', 'In sagittis dui vel nisl.', false, 2, 2);
+insert into todos (id, title, description, complete, user_id, category_id) values (497, 'In the Valley of Elah', 'Nulla nisl.', false, 8, NULL);
+insert into todos (id, title, description, complete, user_id, category_id) values (498, 'Caveman', 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.', true, 4, NULL);
+insert into todos (id, title, description, complete, user_id, category_id) values (499, 'Noah''s Ark', 'Duis at velit eu est congue elementum.', true, 3, NULL);
+insert into todos (id, title, description, complete, user_id, category_id) values (500, 'Border Run (Mule, The)', 'In sagittis dui vel nisl.', false, 2, NULL);
