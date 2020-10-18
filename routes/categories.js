@@ -7,45 +7,39 @@ module.exports = (db) => {
     let categoryID = req.params.id
 
     if (categoryID === 'All') {
-      db.query(`SELECT todos.title FROM todos;`)
+      db.query(`SELECT * FROM todos;`)
         .then(data => {
-          const categories = data.rows;
-          const arrTitle = [];
-          categories.forEach(category => arrTitle.push(category.title));
-          res.json(arrTitle);
+          const todos = data.rows;
+          res.json(todos);
         })
         .catch(err => {
           res
             .status(500)
             .json({ error: err.message });
         });
-    } else if (categoryID === 'Uncategorized'){
-      db.query(`SELECT todos.title FROM todos WHERE category_id IS NULL;`)
-      .then(data => {
-        const categories = data.rows;
-        const arrTitle = [];
-        categories.forEach(category => arrTitle.push(category.title));
-        res.json(arrTitle);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    } else if (categoryID === 'Uncategorized') {
+      db.query(`SELECT * FROM todos WHERE category_id IS NULL;`)
+        .then(data => {
+          const todos = data.rows;
+          res.json(todos);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
 
     } else {
-    db.query(`SELECT todos.title FROM todos WHERE todos.category_id = $1;`, [categoryID])
-      .then(data => {
-        const categories = data.rows;
-        const arrTitle = [];
-        categories.forEach(category => arrTitle.push(category.title));
-        res.json(arrTitle);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+      db.query(`SELECT * FROM todos WHERE todos.category_id = $1;`, [categoryID])
+        .then(data => {
+          const todos = data.rows;
+          res.json(todos);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
     }
 
   });
