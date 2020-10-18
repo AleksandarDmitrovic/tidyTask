@@ -5,7 +5,7 @@ const escape =  function(str) {
   return div.innerHTML;
 };
 const createTodoInstance = function(todo) {
-  const title = escape(todo);
+  const title = escape(todo.title);
   const $instance = `
   <div class="to-do-instance">
     <p>${title}</p>
@@ -20,7 +20,7 @@ const createTodoInstance = function(todo) {
 
 $(() => {
 
-  //Ajax post request of todos data
+  //Ajax get request of todos data
   $('.filter button').on('click', function(event) {
     event.preventDefault();
 
@@ -34,8 +34,8 @@ $(() => {
     $.ajax({
       method: "GET",
       url: `/api/categories/${categoryID}`
-    }).done((categories) => {
-      for (const todo of categories) {
+    }).done((todos) => {
+      for (const todo of todos) {
         const todoInstance = createTodoInstance(todo);
         $(".todos_container").append(todoInstance);
       }
