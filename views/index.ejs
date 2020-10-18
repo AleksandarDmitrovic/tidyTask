@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <title>Home Page</title>
+    <!--External CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -9,9 +12,38 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/books_api.js"></script>
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <nav>
+      <div id="user_greeting"><h3>Welcome User</h1></div>
+      <div id="app-title"><h1>SMART TODO</h1></div>
+      <div class="nav-buttons">
+        <button id="display-todo-form"><div><b>Add</b> a todo</div><i class="fas fa-angle-double-down"></i></button>
+        <button id="settings-button">Settings</button>
+      </div>
+    </nav>
+    <main class="container">
+      <!-- <button id="scroll-up"><i class="fas fa-chevron-circle-up"></i></button> -->
+      <div class="left_menu_container">
+        <div class="left_menu">
+          <div class="category_container">
+            <ul>All</ul>
+            <ul>Films / Series To Watch</ul>
+            <ul>Restaurants To Visit</ul>
+            <ul>Books To Read</ul>
+            <ul>Products To Buy</ul>
+            <ul>Uncategorized</ul>
+          </div>
+        </div>
+      </div>
+      <div class="main_content">
+        <div class="todos_container">
+          <h3>todo</h3>
+        </div>
+      </div>
+
+    </main>
   </body>
 </html>
