@@ -40,10 +40,6 @@ $(() => {
         $(".todos_container").append(todoInstance);
       }
     });
-
-  // $('.to-do-instance').on('click', function(event) {
-  //   event.preventDefault();
-  //   alert('test');
   });
 
 });
