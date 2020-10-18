@@ -6,10 +6,16 @@ const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const bodyParser = require("body-parser");
+const cors       = require("cors");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 
+var corsOptions = {
+  origin: 'http://localhost:8080/',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions));
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
