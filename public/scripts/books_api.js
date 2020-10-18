@@ -3,7 +3,7 @@ const checkGoogleBooks = (search) => {
   $.ajax({
     url: baseURL
   }).then(res => {
-    console.log(res.items.length);
+    return res.items.length;
   })
   .catch(err => {
     console.error(err);
@@ -19,4 +19,4 @@ $(() => {
 
 });
 
-module.exports = { checkGoogleBooks };
+// module.exports = { checkGoogleBooks };

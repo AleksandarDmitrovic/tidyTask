@@ -19,35 +19,31 @@ const createTodoInstance = function(todo) {
 };
 
 $(() => {
+
   //Ajax post request of todos data
   $('.filter button').on('click', function(event) {
     event.preventDefault();
 
+    let category = event.target.parentElement;
+    let categoryID = ($(category).data('filter')).toString();
+    // console.log('categoryID :', categoryID);
+
+    //Empty todos container
+    $(".todos_container").empty();
+
     $.ajax({
       method: "GET",
-      url: "/api/categories"
+      url: `/api/categories/${categoryID}`
     }).done((categories) => {
       for (const todo of categories) {
         const todoInstance = createTodoInstance(todo);
-
         $(".todos_container").append(todoInstance);
-        // $("<div class=\"to-do-instance\">").text(todo).appendTo($(".todos_container"));
       }
     });
 
-    // $.ajax({
-    //   method: "GET",
-    //   url: "/api/users"
-    // }).done((users) => {
-    //   for(user in users) {
-    //     $("<div>").text(user.name).appendTo($(".todos_container"));
-    //   }
-    // });
-  });
-
-  $('.to-do-instance').on('click', function(event) {
-    event.preventDefault();
-    alert('test');
+  // $('.to-do-instance').on('click', function(event) {
+  //   event.preventDefault();
+  //   alert('test');
   });
 
 });
