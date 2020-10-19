@@ -4,7 +4,7 @@ const router = express.Router();
 module.exports = (db) => {
   //Queries selecting todos by category
   router.get("/:id", (req, res) => {
-    let categoryID = req.params.id
+    let categoryID = req.params.id;
 
     if (categoryID === 'All') {
       db.query(`SELECT * FROM todos;`)

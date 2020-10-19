@@ -23,7 +23,7 @@ const checkMovieApi = function(search) {
     .then(function(body) {
       const results = JSON.parse(body);
       const totalResults = results['total_results'];
-      console.log(totalResults);
+      return totalResults;
     })
     .catch(function(err) {
       console.log('Error: ', err.statusCode,);
