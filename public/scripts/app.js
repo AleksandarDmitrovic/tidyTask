@@ -9,11 +9,11 @@ const escape =  function(str) {
 const createTodoInstance = function(todo) {
   const title = escape(todo.title);
   const $instance = `
-  <div class="to-do-instance" instance-filter="${todo.id}">
+  <div class="to-do-instance">
     <header>
       <p>${title}</p>
       <span>
-        <button class="btn btn-outline-secondary" data-todo_id="${todo.id}">Edit</button>
+        <button class="btn btn-outline-secondary" data-todo_id="${todo.id}" data-categort_id="${todo.categoryID}">Edit</button>
         <button class="btn btn-outline-danger" >Delete</button>
       </span>
     </header>
@@ -31,20 +31,15 @@ const createTodoInstance = function(todo) {
           <label for="completed">Completed: </label>
           <input type="checkbox" value="">
         </p>
+        <p>
+        <label for="submit"></label>
+        <button class="btn btn-outline-success">Submit!</button>
+        </p>
       </form>
     </div>
   </div>`;
 
   return $instance;
-};
-
-const onClick = function(id) {
-  const todoForm = document.getElementById(id);
-  if (todoForm.style.display === "none") {
-    todoForm.style.display = "block";
-  } else {
-    todoForm.style.display = "none";
-  }
 };
 
 $(() => {
@@ -81,26 +76,39 @@ $(() => {
     event.preventDefault();
 
     let todo = event.target;
-    console.log('todo: ', todo);
     let todoID = ($(todo).data('todo_id')).toString();
-    console.log('todoID :', todoID);
 
-
-    // $.ajax({
-    //   method: "GET",
-    //   url: `/api/categories/${categoryID}`
-    // }).done((todos) => {
-    //   $(".todos_container").empty();
-    //   for (const todo of todos) {
-    //     const todoInstance = createTodoInstance(todo);
-    //     $(".todos_container").append(todoInstance);
-    //   }
-    // });
+    $(`#${todoID}`).toggle('fast', function() {
+    });
   });
 
 
 //Ajax get request for submitting edit
+  $('body').on('click', '.btn-outline-success', function(event) {
+    event.preventDefault();
+    console.log(event);
+    const newTitle = event.target.form[0].value;
+    const newDescription = event.target.form[1].value;
+    const isCompleted = event.target.form[2].checked;
+    const todoID = event.target.form.id;
+    $.ajax({
+      method: "GET",
+      url: `/api/todos/${todoID}`,
+      data: {
+        title: newTitle,
+        description: newDescription,
+        complete: isCompleted,
+        id: todoID
+      }
+    }).done((todos) => {
+      $(".todos_container").empty();
+      for (const todo of todos) {
+        const todoInstance = createTodoInstance(todo);
+        $(".todos_container").append(todoInstance);
+      }
+    });
 
+  });
 
 //Ajax get request for delete instance
 
