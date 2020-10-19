@@ -81,30 +81,86 @@ $(() => {
     event.preventDefault();
 
     let todo = event.target;
-    console.log('todo: ', todo);
+    // console.log('todo: ', todo);
     let todoID = ($(todo).data('todo_id')).toString();
-    console.log('todoID :', todoID);
+    // console.log('todoID :', todoID);
 
-
-    // $.ajax({
-    //   method: "GET",
-    //   url: `/api/categories/${categoryID}`
-    // }).done((todos) => {
-    //   $(".todos_container").empty();
-    //   for (const todo of todos) {
-    //     const todoInstance = createTodoInstance(todo);
-    //     $(".todos_container").append(todoInstance);
-    //   }
-    // });
   });
 
 
 //Ajax get request for submitting edit
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Ajax get request for delete instance
+$('body').on('click', '.btn-outline-danger', function(event) {
+// console.log('event :', event);
+  event.preventDefault();
 
+  let todo = event.target.previousElementSibling;
+  // console.log('todo: ', todo);
+  let todoID = ($(todo).data('todo_id')).toString();
+  // console.log('todoID :', todoID);
 
+  // let categoryID = ($(todo).data('category_id')).toString();
+  // console.log('categoryID :', categoryID);
+
+  $.ajax({
+    url: `/api/todos/${todoID}`
+  }).done((categoryID) => {
+    if(categoryID === null) {
+      categoryID = 'Uncategorized';
+    }
+    $.ajax({
+      method: "GET",
+      url: `/api/categories/${categoryID}`
+    }).done((todos) => {
+      $(".todos_container").empty();
+      for (const todo of todos) {
+        const todoInstance = createTodoInstance(todo);
+        $(".todos_container").append(todoInstance);
+      }
+    });
+    $(".todos_container").empty();
+
+  });
 
 });
 
+
+});
