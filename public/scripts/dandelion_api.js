@@ -1,11 +1,30 @@
+$(() => {
+  let movie = ['books', 'novels', 'novel']
+
+  let infoObj = {};
+  const updateInfo = (info) => {
+    infoObj = info
+    console.log(infoObj);
+    let case1 = movie.forEach(ele => {
+      if (infoObj.abstract.includes(ele)) {
+        return true
+      }
+    });
+    if (case1) {
+      console.log("IT worked")
+    }
+  };
+
 const checkDandelionAPI = (search) => {
   let model = `8ba5baec-639e-41f8-b66e-36c859ef6804`;
   let token = `8dd5dc731f90406db23fc5fcd4f3f255`;
-  const baseURL = `https://api.dandelion.eu/datatxt/cl/models/v1?text=${search}&model=${model}&min_score=0.2&include=score_details&token=${token}`;
+  const baseURL = `http://api.dandelion.eu/datatxt/nex/v1/?lang=en%20&text=${search}&include=types%2Cabstract%2Ccategories%2Clod&token=${token}`;
   $.ajax({
     url: baseURL
   }).then(res => {
-    console.log(res);
+    // console.log(res["annotations"]);
+    let dandInfo = res["annotations"]
+    updateInfo(dandInfo);
   })
   .catch(err => {
     console.error(err);
@@ -14,14 +33,28 @@ const checkDandelionAPI = (search) => {
 };
 
 
-
-$(() => {
   // checkDandelionAPI(`A PROMISED LAND
   // by BARACK OBAMA`);
 
-  checkDandelionAPI(`pizzeria`);
+ checkDandelionAPI(`TROUBLES IN PARADISE by Elin Hilderbrand`);
+console.log(infoObj);
 
 });
+
+// const checkDandelionAPI = (search) => {
+//   let model = `8ba5baec-639e-41f8-b66e-36c859ef6804`;
+//   let token = `8dd5dc731f90406db23fc5fcd4f3f255`;
+//   const baseURL = `https://api.dandelion.eu/datatxt/cl/models/v1?text=${search}&model=${model}&min_score=0.2&include=score_details&token=${token}`;
+//   $.ajax({
+//     url: baseURL
+//   }).then(res => {
+//     console.log(res);
+//   })
+//     .catch(err => {
+//       console.error(err);
+//     });
+
+// };
 
 // module.exports = { checkGoogleBooks };
 
