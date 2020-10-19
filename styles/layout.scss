@@ -44,8 +44,8 @@ nav {
   div#user_greeting{
     margin: 3.1em;
   }
-  div#display-todo-form {
-
+  .nav-buttons {
+    margin: 3.1em;
   }
 }
 
@@ -138,7 +138,9 @@ main{
       align-items: center;
     }
 
-
+    div form.edit-form{
+      display: none;
+    }
 
   }
 

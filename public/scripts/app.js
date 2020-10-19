@@ -13,12 +13,12 @@ const createTodoInstance = function(todo) {
     <header>
       <p>${title}</p>
       <span>
-        <button class="btn btn-outline-secondary" >Edit</button>
+        <button class="btn btn-outline-secondary" data-todo_id="${todo.id}">Edit</button>
         <button class="btn btn-outline-danger" >Delete</button>
       </span>
     </header>
-    <div>
-      <form class="edit-form">
+    <div >
+      <form class="edit-form" id="${todo.id}">
         <p>
           <label for="title">Title: </label>
           <input type="text" id="title" value="${title}">
@@ -38,6 +38,15 @@ const createTodoInstance = function(todo) {
   return $instance;
 };
 
+const onClick = function(id) {
+  const todoForm = document.getElementById(id);
+  if (todoForm.style.display === "none") {
+    todoForm.style.display = "block";
+  } else {
+    todoForm.style.display = "none";
+  }
+};
+
 $(() => {
   // New todo form toggle
   $('.new-todo-toggle').click(function() {
@@ -53,18 +62,49 @@ $(() => {
     let categoryID = ($(category).data('filter')).toString();
     // console.log('categoryID :', categoryID);
 
-    //Empty todos container
+    $(".todos_container").empty();
 
     $.ajax({
       method: "GET",
       url: `/api/categories/${categoryID}`
     }).done((todos) => {
-      $(".todos_container").empty();
       for (const todo of todos) {
         const todoInstance = createTodoInstance(todo);
         $(".todos_container").append(todoInstance);
       }
-
     });
   });
+
+
+  //Ajax get request for editing instance form
+  $('body').on('click', '.btn-outline-secondary', function(event) {
+    event.preventDefault();
+
+    let todo = event.target;
+    console.log('todo: ', todo);
+    let todoID = ($(todo).data('todo_id')).toString();
+    console.log('todoID :', todoID);
+
+
+    // $.ajax({
+    //   method: "GET",
+    //   url: `/api/categories/${categoryID}`
+    // }).done((todos) => {
+    //   $(".todos_container").empty();
+    //   for (const todo of todos) {
+    //     const todoInstance = createTodoInstance(todo);
+    //     $(".todos_container").append(todoInstance);
+    //   }
+    // });
+  });
+
+
+//Ajax get request for submitting edit
+
+
+//Ajax get request for delete instance
+
+
+
 });
+
