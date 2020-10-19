@@ -53,9 +53,8 @@ $(() => {
   $('.filter button').on('click', function(event) {
     event.preventDefault();
 
-    let category = event.target.parentElement;
-    let categoryID = ($(category).data('filter')).toString();
-    // console.log('categoryID :', categoryID);
+    const category = event.target.parentElement;
+    const categoryID = ($(category).data('filter')).toString();
 
     $(".todos_container").empty();
 
@@ -75,8 +74,8 @@ $(() => {
   $('body').on('click', '.btn-outline-secondary', function(event) {
     event.preventDefault();
 
-    let todo = event.target;
-    let todoID = ($(todo).data('todo_id')).toString();
+    const todo = event.target;
+    const todoID = ($(todo).data('todo_id')).toString();
 
     $(`#${todoID}`).toggle('fast', function() {
     });
@@ -86,33 +85,66 @@ $(() => {
 //Ajax get request for submitting edit
   $('body').on('click', '.btn-outline-success', function(event) {
     event.preventDefault();
-    console.log(event);
+
     const newTitle = event.target.form[0].value;
     const newDescription = event.target.form[1].value;
     const isCompleted = event.target.form[2].checked;
     const todoID = event.target.form.id;
+
     $.ajax({
       method: "GET",
-      url: `/api/todos/${todoID}`,
+      url: `/api/editTodo/${todoID}`,
       data: {
         title: newTitle,
         description: newDescription,
         complete: isCompleted,
         id: todoID
       }
-    }).done((todos) => {
-      $(".todos_container").empty();
-      for (const todo of todos) {
-        const todoInstance = createTodoInstance(todo);
-        $(".todos_container").append(todoInstance);
+    }).done((categoryID) => {
+      if (categoryID === null) {
+        categoryID = 'Uncategorized';
       }
-    });
 
+      $.ajax({
+        method: "GET",
+        url: `/api/categories/${categoryID}`
+      }).done((todos) => {
+        $(".todos_container").empty();
+
+        for (const todo of todos) {
+          const todoInstance = createTodoInstance(todo);
+          $(".todos_container").append(todoInstance);
+        }
+      });
+    });
   });
 
 //Ajax get request for delete instance
+  $('body').on('click', '.btn-outline-danger', function(event) {
+  // console.log('event :', event);
+    event.preventDefault();
+
+    const todo = event.target.previousElementSibling;
+    const todoID = ($(todo).data('todo_id')).toString();
 
 
+    $.ajax({
+      url: `/api/deleteTodo/${todoID}`
+    }).done((categoryID) => {
+      if(categoryID === null) {
+        categoryID = 'Uncategorized';
+      }
+      $.ajax({
+        method: "GET",
+        url: `/api/categories/${categoryID}`
+      }).done((todos) => {
+        $(".todos_container").empty();
 
+        for (const todo of todos) {
+          const todoInstance = createTodoInstance(todo);
+          $(".todos_container").append(todoInstance);
+        }
+      });
+    });
+  });
 });
-
