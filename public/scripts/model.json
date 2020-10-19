@@ -1,0 +1,39 @@
+{
+  "lang": "en",
+  "description": "Text clasification model that sorts todo list into 4 categories",
+  "categories": [
+    {
+      "name": "Movies",
+      "topics": {
+        "https://en.wikipedia.org/wiki/Film": 2.0,
+        "https://en.wikipedia.org/wiki/Cinematography": 1.0
+      }
+    },
+    {
+      "name": "Restaurants",
+      "topics": {
+        "https://en.wikipedia.org/wiki/Restaurant": 2.0,
+        "https://en.wikipedia.org/wiki/Types_of_restaurants": 1.0,
+        "https://en.wikipedia.org/wiki/Dinner": 0.5,
+        "https://en.wikipedia.org/wiki/Fast_food_restaurant": 0.5
+      }
+    },
+    {
+      "name": "Books",
+      "topics": {
+        "https://en.wikipedia.org/wiki/Book": 2.0,
+        "https://en.wikipedia.org/wiki/Novel": 1.0,
+        "https://en.wikipedia.org/wiki/Publication": 1.0,
+        "https://en.wikipedia.org/wiki/Page_(paper)": 0.5
+      }
+    },
+    {
+      "name": "Products",
+      "topics": {
+        "https://en.wikipedia.org/wiki/Product_(business)": 2.0,
+        "https://en.wikipedia.org/wiki/Goods":1.0,
+        "https://en.wikipedia.org/wiki/Goods_and_services": 0.5
+      }
+    }
+  ]
+}
