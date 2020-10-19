@@ -1,18 +1,21 @@
 $(() => {
-  let movie = ['books', 'novels', 'novel']
+  let books = ['books', 'novels', 'novel']
 
   let infoObj = {};
-  const updateInfo = (info) => {
+  const checkCategory = (info) => {
     infoObj = info
-    console.log(infoObj);
-    let case1 = movie.forEach(ele => {
-      if (infoObj.abstract.includes(ele)) {
-        return true
+    console.log('infoObj :', infoObj);
+
+    let abstract = (infoObj["0"]["abstract"]).toString();
+    console.log('abstract :', abstract);
+
+    books.forEach(ele => {
+      if (abstract.includes(ele)) {
+        console.log('ITS true');
       }
     });
-    if (case1) {
-      console.log("IT worked")
-    }
+
+
   };
 
 const checkDandelionAPI = (search) => {
@@ -24,7 +27,7 @@ const checkDandelionAPI = (search) => {
   }).then(res => {
     // console.log(res["annotations"]);
     let dandInfo = res["annotations"]
-    updateInfo(dandInfo);
+    checkCategory(dandInfo);
   })
   .catch(err => {
     console.error(err);
