@@ -1,48 +1,81 @@
 $(() => {
-  let books = ['books', 'novels', 'novel']
 
-  let infoObj = {};
+  //Dandelion Text Classification API
+
   const checkCategory = (info) => {
-    infoObj = info
-    console.log('infoObj :', infoObj);
+    let checkObj = {
+      'Movies': 1,
+      'Restaurants': 2,
+      'Books': 3,
+      'Products': 4
+    }
 
-    let abstract = (infoObj["0"]["abstract"]).toString();
-    console.log('abstract :', abstract);
+    let topCategory = info[0].name;
+    console.log('topCategory :', topCategory);
 
-    books.forEach(ele => {
-      if (abstract.includes(ele)) {
-        console.log('ITS true');
+    for (const key in checkObj) {
+      if (key === topCategory) {
+        console.log(checkObj[key]);
+        return checkObj[key];
       }
-    });
+    }
+  };
 
+  const checkDandelionAPI = (search) => {
+    let model = `8ba5baec-639e-41f8-b66e-36c859ef6804`; //FIRST MODEL
+    let token = `8dd5dc731f90406db23fc5fcd4f3f255`;
+    const baseURL = `https://api.dandelion.eu/datatxt/cl/v1/?text=${search}&model=${model}&min_score=0&include=score_details&token=${token}`;
+    $.ajax({
+      url: baseURL
+    }).then(res => {
+      //Returns null if no category is found
+      if ((res.categories).length === 0) {
+        console.log('error no category found my dandelion api');
+        return null;
+      }
+      let categoryObj = res.categories;
+      checkCategory(categoryObj);
+    })
+      .catch(err => {
+        console.error(err);
+      });
 
   };
 
-const checkDandelionAPI = (search) => {
-  let model = `8ba5baec-639e-41f8-b66e-36c859ef6804`;
-  let token = `8dd5dc731f90406db23fc5fcd4f3f255`;
-  const baseURL = `http://api.dandelion.eu/datatxt/nex/v1/?lang=en%20&text=${search}&include=types%2Cabstract%2Ccategories%2Clod&token=${token}`;
-  $.ajax({
-    url: baseURL
-  }).then(res => {
-    // console.log(res["annotations"]);
-    let dandInfo = res["annotations"]
-    checkCategory(dandInfo);
-  })
-  .catch(err => {
-    console.error(err);
-  });
+  // BOOKS
+  // checkDandelionAPI(`A PROMISED LAND by BARACK OBAMA`); //WORKS
+  // checkDandelionAPI(`TROUBLES IN PARADISE by Elin Hilderbrand`); //FAILS
+  // checkDandelionAPI(`harry potter`); //WORKS
 
-};
+  // MOVIES
+  // checkDandelionAPI(`Titanic`);  //WORKS
+  // checkDandelionAPI(`Terminator`); //WORKS
+  // checkDandelionAPI(`the movies`); //FAILS
+
+  // RESTAURANTS
+  // checkDandelionAPI(`Yuga Traditional Indian Kitchen and Bar`);  //WORKS
+  // checkDandelionAPI(`Boston Pizza`); //WORKS
+  checkDandelionAPI(`Fergus & Bix`); //FAILS
+
+  // PRODUCTS
+  // checkDandelionAPI(`range of product lines`);  //MISS CATEGORIZES TO BOOKS
+  // checkDandelionAPI(`Nintendo Switch`); //WORKS
+  // checkDandelionAPI(`iPhone 6s`); //WORKS
 
 
-  // checkDandelionAPI(`A PROMISED LAND
-  // by BARACK OBAMA`);
-
- checkDandelionAPI(`TROUBLES IN PARADISE by Elin Hilderbrand`);
-console.log(infoObj);
-
+  // module.exports = { checkDandelionAPI , checkCategory };
 });
+
+
+
+
+
+
+
+
+
+
+
 
 // const checkDandelionAPI = (search) => {
 //   let model = `8ba5baec-639e-41f8-b66e-36c859ef6804`;
@@ -59,88 +92,68 @@ console.log(infoObj);
 
 // };
 
-// module.exports = { checkGoogleBooks };
-
-// var dandelion = require("node-dandelion");
-// dandelion.configure({
-//   "token":"8dd5dc731f90406db23fc5fcd4f3f255"
-// });
-
-// let model = `8ba5baec-639e-41f8-b66e-36c859ef6804`;
-// let token = `8dd5dc731f90406db23fc5fcd4f3f255`;
 
 
-// let object = {
-//   "string":{
-//     "type":"txt",
-//     "value":"pizzeria"
-//   },
-//   "model": "8ba5baec-639e-41f8-b66e-36c859ef6804",
-//   "extras": [
-//     {
-//       "max_annotations": 1
-//     },
-//     {
-//       "min_score": 0.25
-//     },
-//   ]
-// }
+  // //DANDELION Entity Extraction API
+  // let infoObj = {};
+  // let books = ['books', 'novels', 'novel'];
+  // let movies = ['movie', 'movies', 'film', 'films',];
+  // let restaurant = ['restaurant', 'restaurants', 'kitcken', 'cafe'];
+  // let products = ['brand', ]
 
-// dandelion.txtCl(object, callback);
-// // "string", "model" are required.
-// // In the "extras" object, you can use any optional parameters from the API.
-// // In the "nex_extras" object, you can use any optional parameters from the NEX API.
-// // Check the full reference here: https://dandelion.eu/docs/api/datatxt/cl/v1/
+  // const checkCategory = (info) => {
+  //   infoObj = info
+  //   console.log('infoObj :', infoObj);
+  //   let bookScore = 0;
+  //   let movieScore = 0;
 
-// // TXT NEX: Check for specific topics, person, or other types of concepts in the provided text.
-// dandelion.txtNex(
-//   {
-//     "string": {
-//       "type":"txt",
-//       "value": "\"Loneliness is young Ambitions ladder\" w.Shakespeare"
-//     },
-//     "extras": [
-//       {
-//         "min_confidence": 0.7
-//       },
-//       {
-//         "social.hashtag": true
-//       },
-//       {
-//         "social.mention": true
-//       },
-//       {
-//         "include": "types, categories, abstract, image, lod, alternate_labels"
-//       },
-//       {
-//         "epsilon": 0.5
-//       }
-//     ]
-//   },
-//   function(results){
-//     /***** RESULTS: *****
-//     { time: 1,
-//     annotations:
-//    [ { start: 39,
-//        end: 53,
-//        spot: 'w\\.Shakespeare',
-//        confidence: 0.7779,
-//        id: 32897,
-//        title: 'William Shakespeare',
-//        uri: 'http://en.wikipedia.org/wiki/William_Shakespeare',
-//        abstract: 'William Shakespeare (; 26 April 1564 (baptised) – 23 April 1616) was an English ,  and actor, widely regarded as the greatest writer in the English language and the world\'s pre-eminent dramatist. He is often called England\'s national poet and the "Bard of Avon". His extant works, including some collaborations, consist of about 38 plays, 154 sonnets, two long narrative poems, and a few other verses, the authorship of some of which is uncertain. His plays have been translated into every major living language and are performed more often than those of any other playwright.',
-//        label: 'William Shakespeare',
-//        categories: [Object],
-//        types: [Object],
-//        alternateLabels: [Object],
-//        image: [Object],
-//        lod: [Object] } ],
-//   lang: 'en',
-//   langConfidence: 1,
-//   timestamp: '2015-04-24T22:50:33.478' }
-//   **********/
-//   }
-// );
+  //   let abstract = (infoObj["0"]["abstract"]).toString();
+  //   console.log('abstract :', abstract);
+
+  //   books.forEach(ele => {
+  //     if (abstract.includes(ele)) {
+  //       console.log('ITS A BOOK');
+  //       bookScore ++;
+  //       console.log('bookScore :', bookScore);
+  //     }
+  //   });
+
+  //   movies.forEach(ele => {
+  //     if (abstract.includes(ele)) {
+  //       console.log('ITS A MOVIE');
+  //       movieScore ++;
+  //       console.log('movieScore :', movieScore);
+  //     }
+  //   });
+
+  //   return [bookScore, movieScore];
+  // };
+
+  // const checkDandelionAPI = (search) => {
+  //   // let model = `8ba5baec-639e-41f8-b66e-36c859ef6804`;
+  //   let token = `8dd5dc731f90406db23fc5fcd4f3f255`;
+  //   const baseURL = `http://api.dandelion.eu/datatxt/nex/v1/?lang=en%20&text=${search}&include=types%2Cabstract%2Ccategories%2Clod&token=${token}`;
+  //   $.ajax({
+  //     url: baseURL
+  //   }).then(res => {
+  //     // console.log(res["annotations"]);
+  //     let dandInfo = res["annotations"]
+  //     checkCategory(dandInfo);
+  //   })
+  //     .catch(err => {
+  //       console.error(err);
+  //     });
+
+  // };
+
+  // // BOOKS
+  // // checkDandelionAPI(`A PROMISED LAND by BARACK OBAMA`);
+  // //  checkDandelionAPI(`TROUBLES IN PARADISE by Elin Hilderbrand`);
+  // // MOVIES
+  // checkDandelionAPI(`Titanic`);
+  //---------------------------------------------------------------------------------------------------------------------------------//
+
+
 
 //https://api.dandelion.eu/datatxt/cl/models/v1?text=A%20PROMISED%20LAND%20by%20BARACK%20OBAMA&model=8ba5baec-639e-41f8-b66e-36c859ef6804&min_score=0.2&include=score_details&token=8dd5dc731f90406db23fc5fcd4f3f255
 
