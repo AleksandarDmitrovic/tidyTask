@@ -1,87 +1,100 @@
-$(() => {
+const request = require('request-promise-native');
 
-  //Dandelion Text Classification API
+//Dandelion Text Classification API
+const checkCategory = (info) => {
+  let checkObj = {
+    'Movies': 1,
+    'Restaurants': 2,
+    'Books': 3,
+    'Products': 4
+  }
 
-  const checkCategory = (info) => {
-    let checkObj = {
-      'Movies': 1,
-      'Restaurants': 2,
-      'Books': 3,
-      'Products': 4
+  let topCategory = info[0].name;
+  // console.log('topCategory :', topCategory);
+
+  for (const key in checkObj) {
+    if (key === topCategory) {
+      // console.log(checkObj[key]);
+      return checkObj[key];
     }
+  }
+};
 
-    let topCategory = info[0].name;
-    console.log('topCategory :', topCategory);
+const checkDandelionAPI = (search) => {
+  let model = `9d1a3b7d-5e5c-4cb0-8c94-ea9d17dfd463`; //MODEL 2
+  let token = `8dd5dc731f90406db23fc5fcd4f3f255`;
+  const baseURL = `https://api.dandelion.eu/datatxt/cl/v1/?text=${search}&model=${model}&min_score=0&include=score_details&token=${token}`;
 
-    for (const key in checkObj) {
-      if (key === topCategory) {
-        console.log(checkObj[key]);
-        return checkObj[key];
-      }
-    }
-  };
+  return request(baseURL)
+    .then(function(res) {
+      // Returns null if no category is found
+      const results = JSON.parse(res);
+      if ((results.categories).length === 0) {
+            console.log('error no category found my dandelion api');
+            return null;
+          }
+      let categoryObj = results.categories;
+      return checkCategory(categoryObj);
+    });
 
-  const checkDandelionAPI = (search) => {
-    let model = `9d1a3b7d-5e5c-4cb0-8c94-ea9d17dfd463`; //MODEL 2
-    let token = `8dd5dc731f90406db23fc5fcd4f3f255`;
-    const baseURL = `https://api.dandelion.eu/datatxt/cl/v1/?text=${search}&model=${model}&min_score=0&include=score_details&token=${token}`;
-    $.ajax({
-      url: baseURL
-    }).then(res => {
-      //Returns null if no category is found
-      if ((res.categories).length === 0) {
-        console.log('error no category found my dandelion api');
-        return null;
-      }
-      let categoryObj = res.categories;
-      console.log('categoryObj :', categoryObj);
-      checkCategory(categoryObj);
-    })
-      .catch(err => {
-        console.error(err);
-      });
+  // $.ajax({
+  //   url: baseURL
+  // }).then(res => {
+  //   //Returns null if no category is found
+  //   if ((res.categories).length === 0) {
+  //     console.log('error no category found my dandelion api');
+  //     return null;
+  //   }
+  //   let categoryObj = res.categories;
+  //   console.log('categoryObj :', categoryObj);
+  //   checkCategory(categoryObj);
+  // })
+  //   .catch(err => {
+  //     console.error(err);
+  //   });
 
-  };
+};
 
-  //Search Query Tests
+module.exports = { checkDandelionAPI };
 
-  // BOOKS
-  // checkDandelionAPI(`A PROMISED LAND by BARACK OBAMA`); //WORKS
-  // checkDandelionAPI(`TROUBLES IN PARADISE by Elin Hilderbrand`); //FAILS
-  // checkDandelionAPI(`harry potter`); //WORKS
-  // checkDandelionAPI(`Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones`); //MISS CATEGORIZES TO MOVIES
-  // checkDandelionAPI(`THE VANISHING HALF: A NOVEL byBrit Bennett`); //WORKS
-  // checkDandelionAPI(`One Hundred Years of Solitude`); //WORKS
+//Search Query Tests
 
-
-  // MOVIES
-  // checkDandelionAPI(`Titanic`);  //WORKS
-  // checkDandelionAPI(`Terminator`); //WORKS
-  // checkDandelionAPI(`BORAT SUBSEQUENT MOVIEFILM`); //WORKS
-  // checkDandelionAPI(`Ratatouille`); //WORKS
-  // checkDandelionAPI(`The Wizard of Oz`); //WORKS
-  // checkDandelionAPI(`TO ALL THE BOYS: P.S. I STILL LOVE YOU`); //MISS CATEGORIZES TO BOOKS
-  // checkDandelionAPI(`the movies`); //FAILS
-
-  // RESTAURANTS
-  // checkDandelionAPI(`Yuga Traditional Indian Kitchen and Bar`);  //WORKS
-  // checkDandelionAPI(`Boston Pizza`); //WORKS
-  // checkDandelionAPI(`The Bank and Baron Pub`); //WORKS
-  // checkDandelionAPI(`Cactus Club Cafe`); //WORKS
-  // checkDandelionAPI(`The Old Spaghetti Factory`); //WORKS
-  // checkDandelionAPI(`IKUSA Izakaya & Tokyo Market`); //WORKS
-  // checkDandelionAPI(`Jollibee`); //WORKS
-  // checkDandelionAPI(`Fergus & Bix`); //FAILS
-
-  // PRODUCTS
-  // checkDandelionAPI(`Nintendo Switch`); //WORKS
-  // checkDandelionAPI(`iPhone 12 Pro`); //WORKS
-  // checkDandelionAPI(`2020 Accord Sedan Honda`); //WORKS
-  // checkDandelionAPI(`Philips Sunrise Simulation Bedside Light & FM Radio Alarm Clock`); //WORKS
+// BOOKS
+// checkDandelionAPI(`A PROMISED LAND`); //WORKS
+// checkDandelionAPI(`TROUBLES IN PARADISE by Elin Hilderbrand`); //FAILS
+// checkDandelionAPI(`harry potter`); //WORKS
+// checkDandelionAPI(`Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones`); //MISS CATEGORIZES TO MOVIES
+// checkDandelionAPI(`THE VANISHING HALF: A NOVEL byBrit Bennett`); //WORKS
+// checkDandelionAPI(`One Hundred Years of Solitude`); //WORKS
 
 
-  // module.exports = { checkDandelionAPI , checkCategory };
-});
+// MOVIES
+// checkDandelionAPI(`Titanic`);  //WORKS
+// checkDandelionAPI(`Terminator`); //WORKS
+// checkDandelionAPI(`BORAT SUBSEQUENT MOVIEFILM`); //WORKS
+// checkDandelionAPI(`Ratatouille`); //WORKS
+// checkDandelionAPI(`The Wizard of Oz`); //WORKS
+// checkDandelionAPI(`TO ALL THE BOYS: P.S. I STILL LOVE YOU`); //MISS CATEGORIZES TO BOOKS
+// checkDandelionAPI(`the movies`); //FAILS
+
+// RESTAURANTS
+// checkDandelionAPI(`Yuga Traditional Indian Kitchen and Bar`);  //WORKS
+// checkDandelionAPI(`Boston Pizza`); //WORKS
+// checkDandelionAPI(`The Bank and Baron Pub`); //WORKS
+// checkDandelionAPI(`Cactus Club Cafe`); //WORKS
+// checkDandelionAPI(`The Old Spaghetti Factory`); //WORKS
+// checkDandelionAPI(`IKUSA Izakaya & Tokyo Market`); //WORKS
+// checkDandelionAPI(`Jollibee`); //WORKS
+// checkDandelionAPI(`Fergus & Bix`); //FAILS
+
+// PRODUCTS
+// checkDandelionAPI(`Nintendo Switch`); //WORKS
+// checkDandelionAPI(`iPhone 12 Pro`); //WORKS
+// checkDandelionAPI(`2020 Accord Sedan Honda`); //WORKS
+// checkDandelionAPI(`Philips Sunrise Simulation Bedside Light & FM Radio Alarm Clock`); //WORKS
+
+
+
 
 
 
