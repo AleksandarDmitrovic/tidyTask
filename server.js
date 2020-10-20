@@ -36,12 +36,17 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const categoryRoutes = require("./routes/categories");
+const editTodoRoutes = require("./routes/edit-todo");
+const deleteTodoRoutes = require("./routes/delete-todo");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/categories", categoryRoutes(db));
+app.use("/api/editTodo", editTodoRoutes(db));
+app.use("/api/deleteTodo", deleteTodoRoutes(db));
+
 // Note: mount other resources here, using the same pattern above
 const { checkMovieApi } = require('./public/scripts/movies_api');
 const { checkRestoApi } = require('./public/scripts/restaurants_api');
@@ -54,8 +59,8 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
-  console.log(`Movie: `, checkMovieApi("A Bug's Life"));
-  console.log(`Restaurant: `, checkRestoApi("burgoo"));
+  // console.log(`Movie: `, checkMovieApi("A Bug's Life"));
+  // console.log(`Restaurant: `, checkRestoApi("burgoo"));
 });
 
 

@@ -44,8 +44,8 @@ nav {
   div#user_greeting{
     margin: 3.1em;
   }
-  div#display-todo-form {
-
+  .nav-buttons {
+    margin: 3.1em;
   }
 }
 
@@ -53,6 +53,39 @@ main{
   display: flex;
   align-items: stretch;
 
+  section {
+    margin-bottom: 1.3em;
+  }
+
+  section.compose-todo {
+    display: none;
+    background-color: #7C7287;
+    border-radius: 1.2em;
+    padding: 0.5em;
+  }
+
+  form  {
+    display: table;
+    border-spacing: 0.5em;
+  }
+
+  label {
+    display: table-cell;
+    // align-items: right;
+  }
+
+  p {
+    display: table-row;
+  }
+
+  input {
+    display: table-cell;
+  }
+
+  textarea {
+    display: table-cell;
+    vertical-align: top;
+  }
 
   .left_menu_container{
     position: fixed;
@@ -93,16 +126,22 @@ main{
   }
 
   div.to-do-instance {
-    display: flex;
+
     margin: 0.5em 0em;
     padding: 1.2em;
     border: 2px solid grey;
     border-radius: 1.7em;
-    justify-content: space-between;
-    align-items: center;
-    p {
-      margin: 0;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+
+    div form.edit-form{
+      display: none;
+    }
+
   }
 
 }
