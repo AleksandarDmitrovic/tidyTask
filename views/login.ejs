@@ -21,21 +21,31 @@
   </nav>
   <main>
     <section class="login-form">
+      <h2>Login</h2>
       <form method="POST" action="/login">
-        <label for="Email">Email Address</label><br/>
-        <input type="email" name="email" placeholder="Enter email address"><br/>
-        <label for="Password" style="margin-top: 10px;">Password </label><br/>
-        <input type="password" name="password" placeholder="Password"><br/>
-        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Login</button>
+        <p>
+          <label for="login">Email: </label>
+          <input type="text" id="email" placeholder="Email" size="30">
+        </p>
+        <p>
+          <label for="password">Password: </label>
+          <input type="text" id="password" placeholder="Password" size="30">
+        </p>
+        <button class="btn btn-outline-success"  type="submit">Login!</button>
       </form>
     </section>
     <section class="register-form">
+      <h2>Register</h2>
       <form method="POST" action="/register">
-        <label for="Email">Email Address</label><br/>
-        <input type="email" name="email" placeholder="Enter email address"><br/>
-        <label for="Password" style="margin-top: 10px;">Password </label><br/>
-        <input type="password" name="password" placeholder="Password"><br/>
-        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Login</button>
+        <p>
+          <label for="login">Email: </label>
+          <input type="text" id="email" placeholder="Email" size="30">
+        </p>
+        <p>
+          <label for="password">Password: </label>
+          <input type="text" id="password" placeholder="Password" size="30">
+        </p>
+        <button class="btn btn-outline-success"  type="submit">Login!</button>
       </form>
     </section>
   </main>
