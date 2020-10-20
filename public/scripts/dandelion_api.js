@@ -54,8 +54,8 @@ $(() => {
 
   // RESTAURANTS
   // checkDandelionAPI(`Yuga Traditional Indian Kitchen and Bar`);  //WORKS
-  // checkDandelionAPI(`Boston Pizza`); //WORKS
-  checkDandelionAPI(`Fergus & Bix`); //FAILS
+  checkDandelionAPI(`Boston Pizza`); //WORKS
+  // checkDandelionAPI(`Fergus & Bix`); //FAILS
 
   // PRODUCTS
   // checkDandelionAPI(`range of product lines`);  //MISS CATEGORIZES TO BOOKS
