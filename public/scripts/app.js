@@ -13,8 +13,8 @@ const createTodoInstance = function(todo) {
     <header>
       <p>${title}</p>
       <span>
-        <button class="btn btn-outline-secondary" data-todo_id="${todo.id}" data-categort_id="${todo.categoryID}">Edit</button>
-        <button class="btn btn-outline-danger" >Delete</button>
+        <button class="btn btn-outline-secondary edit_action" data-todo_id="${todo.id}" data-categort_id="${todo.categoryID}">Edit</button>
+        <button class="btn btn-outline-danger delete_action" >Delete</button>
       </span>
     </header>
     <div >
@@ -44,7 +44,7 @@ const createTodoInstance = function(todo) {
         </p>
         <p>
         <label for="submit"></label>
-        <button class="btn btn-outline-success">Submit!</button>
+        <button class="btn btn-outline-success submit-edit-form">Submit!</button>
         </p>
       </form>
     </div>
@@ -83,6 +83,42 @@ $(() => {
     });
   });
 
+  //Submit button listener for new todo instance
+  $('#new_todo').on('click', function(event) {
+    event.preventDefault();
+
+    const newTitle = event.target.form[0].value;
+    const newDescription = event.target.form[1].value;
+
+
+    $.ajax({
+      method: "GET",
+      url: `/api/newTodo/`,
+      data: {
+        title: newTitle,
+        description: newDescription,
+      }
+    }).done((categoryID) => {
+      if (categoryID === null) {
+        categoryID = 'Uncategorized';
+      }
+      console.log(categoryID);
+      $.ajax({
+        method: "GET",
+        url: `/api/categories/${categoryID}`
+      }).done((todos) => {
+        $(".todos_container").empty();
+        $(".todos_container").append(getCategoryName(categoryID.toString()));
+        for (const todo of todos) {
+          const todoInstance = createTodoInstance(todo);
+          $(".todos_container").append(todoInstance);
+        }
+        $('.edit-form').trigger("reset");
+
+      });
+    })
+  })
+
   //Ajax get request of todos data
   $('.filter button').on('click', function(event) {
     event.preventDefault();
@@ -107,7 +143,7 @@ $(() => {
 
 
   //Ajax get request for editing instance form
-  $('body').on('click', '.btn-outline-secondary', function(event) {
+  $('body').on('click', '.edit_action', function(event) {
     event.preventDefault();
 
     const todo = event.target;
@@ -119,7 +155,7 @@ $(() => {
 
 
 //Ajax get request for submitting edit
-  $('body').on('click', '.btn-outline-success', function(event) {
+  $('body').on('click', '.submit-edit-form', function(event) {
     event.preventDefault();
     console.log(event);
     const newTitle = event.target.form[0].value;
@@ -159,7 +195,7 @@ $(() => {
 
 
 //Ajax get request for delete instance
-  $('body').on('click', '.btn-outline-danger', function(event) {
+  $('body').on('click', '.delete_action', function(event) {
     event.preventDefault();
 
     const todo = event.target.previousElementSibling;
