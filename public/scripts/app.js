@@ -72,8 +72,8 @@ const getCategoryName = function(id) {
   case 'Uncategorized' || null:
     category += "Uncategorized";
   }
-  return `<h2>${category}</h2>`;
 
+  return `<h2>${category}</h2>`;
 };
 
 $(() => {
@@ -160,12 +160,10 @@ $(() => {
 
 //Ajax get request for delete instance
   $('body').on('click', '.btn-outline-danger', function(event) {
-  // console.log('event :', event);
     event.preventDefault();
 
     const todo = event.target.previousElementSibling;
     const todoID = ($(todo).data('todo_id')).toString();
-
 
     $.ajax({
       url: `/api/deleteTodo/${todoID}`
