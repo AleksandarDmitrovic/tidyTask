@@ -28,6 +28,17 @@ const createTodoInstance = function(todo) {
           <textarea name="description" id="description" rows="3" cols="50">${todo.description}</textarea>
         </p>
         <p>
+          <label for="change-category">Category: </label>
+          <select id="categories" name="categories">
+          <option value="" selected disabled hidden>Choose here</option>
+            <option value="1">Movies/Series</option>
+            <option value="2">Restaurants</option>
+            <option value="3">Books</option>
+            <option value="4">Products</option>
+            <option value="null">Uncategorized</option>
+          </select>
+        </p>
+        <p>
           <label for="completed">Completed: </label>
           <input type="checkbox" value="">
         </p>
@@ -40,6 +51,29 @@ const createTodoInstance = function(todo) {
   </div>`;
 
   return $instance;
+};
+
+const getCategoryName = function(id) {
+  let category = "";
+  console.log(id);
+  switch (id) {
+  case '1':
+    category += "Movies / Series";
+    break;
+  case '2':
+    category += "Restaurants";
+    break;
+  case '3':
+    category += "Books";
+    break;
+  case '4':
+    category += "Products";
+    break;
+  case 'Uncategorized' || null:
+    category += "Uncategorized";
+  }
+  return `<h2>${category}</h2>`;
+
 };
 
 $(() => {
@@ -62,6 +96,8 @@ $(() => {
       method: "GET",
       url: `/api/categories/${categoryID}`
     }).done((todos) => {
+      $(".todos_container").append(getCategoryName(categoryID));
+      console.log(categoryID);
       for (const todo of todos) {
         const todoInstance = createTodoInstance(todo);
         $(".todos_container").append(todoInstance);
@@ -85,10 +121,11 @@ $(() => {
 //Ajax get request for submitting edit
   $('body').on('click', '.btn-outline-success', function(event) {
     event.preventDefault();
-
+    console.log(event);
     const newTitle = event.target.form[0].value;
     const newDescription = event.target.form[1].value;
-    const isCompleted = event.target.form[2].checked;
+    const newCategory = event.target.form[2].value;
+    const isCompleted = event.target.form[3].checked;
     const todoID = event.target.form.id;
 
     $.ajax({
@@ -97,6 +134,7 @@ $(() => {
       data: {
         title: newTitle,
         description: newDescription,
+        category_id: newCategory,
         complete: isCompleted,
         id: todoID
       }
@@ -104,13 +142,13 @@ $(() => {
       if (categoryID === null) {
         categoryID = 'Uncategorized';
       }
-
+      console.log(categoryID);
       $.ajax({
         method: "GET",
         url: `/api/categories/${categoryID}`
       }).done((todos) => {
         $(".todos_container").empty();
-
+        $(".todos_container").append(getCategoryName(categoryID.toString()));
         for (const todo of todos) {
           const todoInstance = createTodoInstance(todo);
           $(".todos_container").append(todoInstance);
@@ -118,6 +156,7 @@ $(() => {
       });
     });
   });
+
 
 //Ajax get request for delete instance
   $('body').on('click', '.btn-outline-danger', function(event) {
@@ -139,7 +178,7 @@ $(() => {
         url: `/api/categories/${categoryID}`
       }).done((todos) => {
         $(".todos_container").empty();
-
+        $(".todos_container").append(getCategoryName(categoryID.toString()));
         for (const todo of todos) {
           const todoInstance = createTodoInstance(todo);
           $(".todos_container").append(todoInstance);
