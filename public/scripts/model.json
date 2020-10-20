@@ -6,7 +6,11 @@
       "name": "Movies",
       "topics": {
         "https://en.wikipedia.org/wiki/Film": 2.0,
-        "https://en.wikipedia.org/wiki/Cinematography": 1.0
+        "https://en.wikipedia.org/wiki/Cinematography": 1.0,
+        "https://en.wikipedia.org/wiki/List_of_years_in_film": 1.0,
+        "https://en.wikipedia.org/wiki/Filmmaking": 0.5,
+        "https://en.wikipedia.org/wiki/History_of_film": 0.5,
+        "https://en.wikipedia.org/wiki/Film_industry": 0.5
       }
     },
     {
@@ -14,8 +18,23 @@
       "topics": {
         "https://en.wikipedia.org/wiki/Restaurant": 2.0,
         "https://en.wikipedia.org/wiki/Types_of_restaurants": 1.0,
-        "https://en.wikipedia.org/wiki/Dinner": 0.5,
-        "https://en.wikipedia.org/wiki/Fast_food_restaurant": 0.5
+        "https://en.wikipedia.org/wiki/Cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/Kitchen": 1.0,
+        "https://en.wikipedia.org/wiki/Bar": 1.0,
+        "https://en.wikipedia.org/wiki/Bistro": 1.0,
+        "https://en.wikipedia.org/wiki/Take-out": 1.0,
+        "https://en.wikipedia.org/wiki/Cooking": 1.0,
+        "https://en.wikipedia.org/wiki/Dinner": 1.0,
+        "https://en.wikipedia.org/wiki/Fast_food_restaurant": 1.0,
+        "https://en.wikipedia.org/wiki/Chinese_cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/Italian_cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/French_cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/Japanese_cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/Indian_cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/Spanish_cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/Mexican_cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/Thai_cuisine": 1.0,
+        "https://en.wikipedia.org/wiki/Greek_cuisine": 1.0
       }
     },
     {
@@ -23,6 +42,9 @@
       "topics": {
         "https://en.wikipedia.org/wiki/Book": 2.0,
         "https://en.wikipedia.org/wiki/Novel": 1.0,
+        "https://en.wikipedia.org/wiki/Fiction": 1.0,
+        "https://en.wikipedia.org/wiki/Romance_novel": 1.0,
+        "https://en.wikipedia.org/wiki/Book_series": 1.0,
         "https://en.wikipedia.org/wiki/Publication": 1.0,
         "https://en.wikipedia.org/wiki/Page_(paper)": 0.5
       }
@@ -32,6 +54,21 @@
       "topics": {
         "https://en.wikipedia.org/wiki/Product_(business)": 2.0,
         "https://en.wikipedia.org/wiki/Goods":1.0,
+        "https://en.wikipedia.org/wiki/Toy":1.0,
+        "https://en.wikipedia.org/wiki/Electronics":1.0,
+        "https://en.wikipedia.org/wiki/Camera":1.0,
+        "https://en.wikipedia.org/wiki/Video_game":1.0,
+        "https://en.wikipedia.org/wiki/Clothing":1.0,
+        "https://en.wikipedia.org/wiki/Shoe":1.0,
+        "https://en.wikipedia.org/wiki/Jewellery":1.0,
+        "https://en.wikipedia.org/wiki/Car":1.0,
+        "https://en.wikipedia.org/wiki/List_of_Amazon_products_and_services": 1.0,
+        "https://en.wikipedia.org/wiki/Apple_Inc.": 1.0,
+        "https://en.wikipedia.org/wiki/Google": 1.0,
+        "https://en.wikipedia.org/wiki/Walmart": 1.0,
+        "https://en.wikipedia.org/wiki/Brand": 1.0,
+        "https://en.wikipedia.org/wiki/Microsoft": 1.0,
+        "https://en.wikipedia.org/wiki/Philips": 1.0,
         "https://en.wikipedia.org/wiki/Goods_and_services": 0.5
       }
     }
