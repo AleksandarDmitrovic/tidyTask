@@ -47,18 +47,26 @@ nav {
   .nav-buttons {
     margin: 3.1em;
   }
+
+  div#app-title{
+    margin: auto;
+  }
 }
 
-#app-title{
 
-}
 
 main{
   display: flex;
   align-items: stretch;
 
+  section.login-form {
+    margin: 20em;
+    background-color:#7C7287;
+  }
+
   section {
     margin-bottom: 1.3em;
+
   }
 
   section.compose-todo {
@@ -120,6 +128,7 @@ main{
       }
     }
   }
+
   .main_content{
     display: block;
     width: 100vw;
