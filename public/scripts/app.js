@@ -55,7 +55,7 @@ const createTodoInstance = function(todo) {
 
 const getCategoryName = function(id) {
   let category = "";
-  console.log(id);
+  // console.log(id);
   switch (id) {
   case '1':
     category += "Movies / Series";
@@ -102,7 +102,7 @@ $(() => {
       if (categoryID === null) {
         categoryID = 'Uncategorized';
       }
-      console.log(categoryID);
+
       $.ajax({
         method: "GET",
         url: `/api/categories/${categoryID}`
@@ -175,10 +175,10 @@ $(() => {
         id: todoID
       }
     }).done((categoryID) => {
+      // console.log(categoryID);
       if (categoryID === null) {
         categoryID = 'Uncategorized';
       }
-      console.log(categoryID);
       $.ajax({
         method: "GET",
         url: `/api/categories/${categoryID}`
