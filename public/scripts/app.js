@@ -30,12 +30,12 @@ const createTodoInstance = function(todo) {
         <p>
           <label for="change-category">Category: </label>
           <select id="categories" name="categories">
-          <option value="" selected disabled hidden>Choose here</option>
+            <option value="" disabled selected value>Choose here</option>
             <option value="1">Movies/Series</option>
             <option value="2">Restaurants</option>
             <option value="3">Books</option>
             <option value="4">Products</option>
-            <option value="">Uncategorized</option>
+            <option value="NA">Uncategorized</option>
           </select>
         </p>
         <p>
@@ -79,9 +79,21 @@ const getCategoryName = function(id) {
 $(() => {
   // New todo form toggle
   $('.new-todo-toggle').click(function() {
-    $('.compose-todo').toggle('fast', function() {
+    $('html').scrollTop(0);
+    $('.compose-todo').slideToggle('fast', function() {
     });
+    $('#title').focus();
   });
+
+  //Exectuted on scroll
+  let position = $(window).scrollTop();
+  $(window).on("scroll", function () {
+    let scroll = $(window).scrollTop();
+    if (scroll > position) {
+      $(".compose-todo").hide();
+    }
+  });
+
 
   //Submit button listener for new todo instance
   $('#new_todo').on('click', function(event) {
