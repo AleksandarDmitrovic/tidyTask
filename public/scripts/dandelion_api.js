@@ -76,3 +76,4 @@ module.exports = { checkDandelionAPI };
 // checkDandelionAPI(`iPhone 12 Pro`); //WORKS
 // checkDandelionAPI(`2020 Accord Sedan Honda`); //WORKS
 // checkDandelionAPI(`Philips Sunrise Simulation Bedside Light & FM Radio Alarm Clock`); //WORKS
+// RCA 40" Roku Smart TV, 1080P //WORKA

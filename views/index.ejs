@@ -25,9 +25,17 @@
     </div>
     <div class="nav-buttons">
       <button class="new-todo-toggle">
-        <div><b>Add</b> a todo</div><i class="fas fa-angle-double-down"></i>
+        <!-- <div><b>Add</b> a todo</div><i class="fas fa-angle-double-down"></i> -->
+        <div id="cross"></div>
       </button>
-      <button id="settings-button">Settings</button>
+      <button class="settings-button">
+        <div class="dropdown">
+          <div class="gear"></div>
+          <div class="dropdown-content">
+          <p>Edit Profile</p>
+          </div>
+        </div>
+      </button>
       <form action="/logout?_method=DELETE" method="POST">
         <button id="logout">Logout</button>
       </form>
