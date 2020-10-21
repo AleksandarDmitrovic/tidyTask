@@ -47,18 +47,44 @@ nav {
   .nav-buttons {
     margin: 3.1em;
   }
+
+  div#app-title{
+    margin: auto;
+  }
 }
 
-#app-title{
 
-}
 
 main{
   display: flex;
   align-items: stretch;
 
+  section.login-form {
+    background-color: #7C7287;
+    display: block;
+    width: 25vw;
+    min-width: 40em;
+    height: 25em;
+    margin: 10em 2em 10em auto;;
+    border-radius: 3em;
+    padding: 5em;
+
+  }
+
+  section.register-form {
+    background-color: #7C7287;
+    display: block;
+    width: 25vw;
+    min-width: 40em;
+    height: 25em;
+    margin: 10em auto 2em 10em;
+    border-radius: 3em;
+    padding: 5em;
+  }
+
   section {
     margin-bottom: 1.3em;
+
   }
 
   section.compose-todo {
@@ -120,6 +146,7 @@ main{
       }
     }
   }
+
   .main_content{
     display: block;
     width: 100vw;

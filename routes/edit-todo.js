@@ -10,13 +10,14 @@ module.exports = (db) => {
     const categoryID = req.query.category_id;
     const id = req.query.id;
 
-    if (categoryID === '') {
+    if (categoryID === 'null') {
       const queryParams = [title, description, complete, id];
       const queryString = `
       UPDATE todos
       SET title = $1,
       description = $2,
-      complete = $3
+      complete = $3,
+      category_id = null
       WHERE todos.id = $4
       RETURNING *;`;
 
