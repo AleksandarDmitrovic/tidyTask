@@ -71,9 +71,16 @@ app.use("/register", registerRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+const users = {
+  "1": {
+    "name": "Jason"
+  }
+};
+
 app.get("/", (req, res) => {
+  const templateVars = { user: users['1'] };
   if (req.session.user_id) {
-    res.render("index");
+    res.render("index", templateVars);
   } else {
     res.redirect('/login');
   }
