@@ -17,45 +17,45 @@ module.exports = (db) => {
 
     return results;
   }
-  // router.get("/", (req, res) => {
-  //   if (req.session.user_id) {
-  //     res.redirect('/');
-  //   } else {
-  //     res.render("login");
-  //   }
-  // });
+
 
 
   //Add- Registration Handler for New User Creation
   router.post('/', (req, res) => {
-    const { email, password } = req.body;
+    let id;
+    const { email, password, name } = req.body;
     console.log('req.body :', req.body);
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-    if (email === '' || password === '') {
-      return res.status(404).send("Invalid email or password");
+    if (email === '' || password === '' || name === '') {
+      return res.status(404).send("Empty name, email or password field");
     }
 
     userEmailSearch(email).then(emailFound => {
-    console.log('emailFound :', emailFound);
+      console.log('emailFound :', emailFound);
       console.log('emailFound.length === 0 :', emailFound.length === 0);
 
       if (emailFound.length !== 0) {
         return res.status(404).send("User Email Already Exists");
       }
     });
+    const queryParams = [name, email, hashedPassword];
+    const queryString = `
+    INSERT INTO users (name, email, password)
+    VALUES ($1, $2, $3)
+    RETURNING *;`;
 
-
-
-    // const newUser = {
-    //   id,
-    //   email,
-    //   password: hashedPassword
-    // };
-    // users[id] = newUser;
-
-    // req.session.user_id = id;
-    // res.redirect('/urls/');
+    db.query(queryString, queryParams)
+      .then((data) => {
+        id = data.rows[0].id;
+        req.session.user_id = id;
+        res.redirect('/');
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      })
   });
 
   return router;
