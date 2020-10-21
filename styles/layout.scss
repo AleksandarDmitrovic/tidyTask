@@ -248,10 +248,14 @@ body {
         header {
           display: flex;
           justify-content: space-between;
-          align-items: center;
+
 
           p {
             margin-top: 1.1em;
+
+            .description {
+              color: grey;
+            }
           }
         }
 

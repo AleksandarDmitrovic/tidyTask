@@ -44,12 +44,12 @@ app.use(methodOverride('_method'));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const categoryRoutes = require("./routes/categories");
-const editTodoRoutes = require("./routes/edit-todo");
 const deleteTodoRoutes = require("./routes/delete-todo");
-const newTodoRoutes = require("./routes/new-todo");
+const editProfileRoutes = require("./routes/edit-profile");
+const editTodoRoutes = require("./routes/edit-todo");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
-const editProfileRoutes = require("./routes/edit-profile");
+const newTodoRoutes = require("./routes/new-todo");
 const registerRoutes = require("./routes/register");
 
 // Mount all resource routes
@@ -57,13 +57,13 @@ const registerRoutes = require("./routes/register");
 
 // **Why do we use /api/****? Is there a particular reason?**
 
-app.use("/api/categories", categoryRoutes(db));
-app.use("/api/editTodo", editTodoRoutes(db));
-app.use("/api/deleteTodo", deleteTodoRoutes(db));
-app.use("/api/newTodo", newTodoRoutes(db));
+app.use("/categories", categoryRoutes(db));
+app.use("/deleteTodo", deleteTodoRoutes(db));
+app.use("/editprofile", editProfileRoutes(db));
+app.use("/editTodo", editTodoRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes());
-app.use("/api/editprofile", editProfileRoutes(db));
+app.use("/newTodo", newTodoRoutes(db));
 app.use("/register", registerRoutes(db));
 
 // Note: mount other resources here, using the same pattern above

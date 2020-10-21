@@ -12,6 +12,7 @@ const createTodoInstance = function(todo) {
   <div class="to-do-instance">
     <header>
       <p>${title}</p>
+      <p class="description">${todo.description}</p>
       <span>
         <button class="btn btn-outline-secondary edit_action" data-todo_id="${todo.id}" data-categort_id="${todo.categoryID}">Edit</button>
         <button class="btn btn-outline-danger delete_action" >Delete</button>
@@ -105,7 +106,7 @@ $(() => {
 
     $.ajax({
       method: "GET",
-      url: `/api/newTodo/`,
+      url: `/newTodo/`,
       data: {
         title: newTitle,
         description: newDescription,
@@ -117,7 +118,7 @@ $(() => {
 
       $.ajax({
         method: "GET",
-        url: `/api/categories/${categoryID}`
+        url: `/categories/${categoryID}`
       }).done((todos) => {
         $(".todos_container").empty();
         $(".todos_container").append(getCategoryName(categoryID.toString()));
@@ -142,7 +143,7 @@ $(() => {
 
     $.ajax({
       method: "GET",
-      url: `/api/categories/${categoryID}`
+      url: `/categories/${categoryID}`
     }).done((todos) => {
       $(".todos_container").append(getCategoryName(categoryID));
       for (const todo of todos) {
@@ -175,7 +176,7 @@ $(() => {
 
     $.ajax({
       method: "GET",
-      url: `/api/editTodo/${todoID}`,
+      url: `/editTodo/${todoID}`,
       data: {
         title: newTitle,
         description: newDescription,
@@ -189,7 +190,7 @@ $(() => {
       }
       $.ajax({
         method: "GET",
-        url: `/api/categories/${categoryID}`
+        url: `/categories/${categoryID}`
       }).done((todos) => {
         $(".todos_container").empty();
         $(".todos_container").append(getCategoryName(categoryID.toString()));
@@ -209,14 +210,14 @@ $(() => {
     const todoID = ($(todo).data('todo_id')).toString();
 
     $.ajax({
-      url: `/api/deleteTodo/${todoID}`
+      url: `/deleteTodo/${todoID}`
     }).done((categoryID) => {
       if(categoryID === null) {
         categoryID = 'Uncategorized';
       }
       $.ajax({
         method: "GET",
-        url: `/api/categories/${categoryID}`
+        url: `/categories/${categoryID}`
       }).done((todos) => {
         $(".todos_container").empty();
         $(".todos_container").append(getCategoryName(categoryID.toString()));
@@ -238,7 +239,7 @@ $(() => {
 
     $.ajax({
       method: "GET",
-      url: `/api/editprofile`,
+      url: `/editprofile`,
       data: {
         name: newName,
         email: newEmail,
