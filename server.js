@@ -55,8 +55,6 @@ const registerRoutes = require("./routes/register");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 
-// **Why do we use /api/****? Is there a particular reason?**
-
 app.use("/categories", categoryRoutes(db));
 app.use("/deleteTodo", deleteTodoRoutes(db));
 app.use("/editprofile", editProfileRoutes(db));

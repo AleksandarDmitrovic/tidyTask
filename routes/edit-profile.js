@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
 
-  router.get("/editprofile", (req, res) => {
+  router.post("/", (req, res) => {
     const  userId  = req.session.user_id;
-    const { name, email, password } = req.query;
+    const { name, email, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
     let queryString = ``;
     const queryParams = [];
@@ -53,6 +53,7 @@ module.exports = (db) => {
 
     db.query(queryString, queryParams)
       .then((data) => {
+        console.log('hit');
         res.json(data);
       })
       .catch(err => {

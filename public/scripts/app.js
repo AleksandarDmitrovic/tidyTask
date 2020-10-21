@@ -12,6 +12,7 @@ const createTodoInstance = function(todo) {
   <div class="to-do-instance">
     <header>
       <p>${title}</p>
+      <p class="description">${todo.description}</p>
       <span>
         <button class="btn btn-outline-secondary edit_action" data-todo_id="${todo.id}" data-categort_id="${todo.categoryID}">Edit</button>
         <button class="btn btn-outline-danger delete_action" >Delete</button>
@@ -136,7 +137,7 @@ $(() => {
     event.preventDefault();
 
     const category = event.target;
-    const categoryID = $(category).data('filter').toString();
+    const categoryID = ($(category).data('filter')).toString();
 
     $(".todos_container").empty();
 
@@ -236,8 +237,12 @@ $(() => {
     const newEmail = event.target.form[1].value;
     const newPassword = event.target.form[2].value;
 
+    console.log(newName);
+    console.log(newEmail);
+    console.log(newPassword);
+
     $.ajax({
-      method: "GET",
+      method: "POST",
       url: `/editprofile`,
       data: {
         name: newName,
