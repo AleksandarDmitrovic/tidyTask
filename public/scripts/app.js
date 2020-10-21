@@ -8,48 +8,98 @@ const escape =  function(str) {
 // Creates all todo instances in specfic category
 const createTodoInstance = function(todo) {
   const title = escape(todo.title);
-  const $instance = `
-  <div class="to-do-instance">
-    <header>
-      <p>${title}</p>
-      <p class="description">${todo.description}</p>
-      <span>
-        <button class="btn btn-outline-secondary edit_action" data-todo_id="${todo.id}" data-categort_id="${todo.categoryID}">Edit</button>
-        <button class="btn btn-outline-danger delete_action" >Delete</button>
-      </span>
-    </header>
-    <div >
-      <form class="edit-form" id="${todo.id}">
-        <p>
-          <label for="title">Title: </label>
-          <input type="text" id="title" value="${title}">
-        </p>
-        <p>
-          <label for="description">Description: </label>
-          <textarea name="description" id="description" rows="3" cols="50">${todo.description}</textarea>
-        </p>
-        <p>
-          <label for="change-category">Category: </label>
-          <select id="categories" name="categories">
-            <option value="" disabled selected value>Choose here</option>
-            <option value="1">Movies/Series</option>
-            <option value="2">Restaurants</option>
-            <option value="3">Books</option>
-            <option value="4">Products</option>
-            <option value="NA">Uncategorized</option>
-          </select>
-        </p>
-        <p>
-          <label for="completed">Completed: </label>
-          <input type="checkbox" value="">
-        </p>
-        <p>
-        <label for="submit"></label>
-        <button class="btn btn-outline-success submit-edit-form">Submit!</button>
-        </p>
-      </form>
-    </div>
-  </div>`;
+  const description = escape(todo.description);
+  const isCompleted = todo.complete;
+  const categoryID = escape(todo.categoryID);
+  const id = escape(todo.id);
+  let $instance = ``;
+  if (isCompleted === false) {
+    $instance += `
+    <div class="to-do-instance">
+      <header>
+        <p>${title}</p>
+        <p class="description">${description}</p>
+        <span>
+          <button class="btn btn-outline-secondary edit_action" data-todo_id="${id}" data-categort_id="${categoryID}">Edit</button>
+          <button class="btn btn-outline-danger delete_action" >Delete</button>
+        </span>
+      </header>
+      <div >
+        <form class="edit-form" id="${id}">
+          <p>
+            <label for="title">Title: </label>
+            <input type="text" id="title" value="${title}">
+          </p>
+          <p>
+            <label for="description">Description: </label>
+            <textarea name="description" id="description" rows="3" cols="50">${description}</textarea>
+          </p>
+          <p>
+            <label for="change-category">Category: </label>
+            <select id="categories" name="categories">
+              <option value="" disabled selected value>Choose here</option>
+              <option value="1">Movies/Series</option>
+              <option value="2">Restaurants</option>
+              <option value="3">Books</option>
+              <option value="4">Products</option>
+              <option value="NA">Uncategorized</option>
+            </select>
+          </p>
+          <p>
+            <label for="completed">Completed: </label>
+            <input type="checkbox" value="">
+          </p>
+          <p>
+          <label for="submit"></label>
+          <button class="btn btn-outline-success submit-edit-form">Submit!</button>
+          </p>
+        </form>
+      </div>
+    </div>`;
+  } else {
+    $instance += `
+    <div class="to-do-instance completed">
+      <header>
+        <p>${title}</p>
+        <p class="description">${description}</p>
+        <span>
+          <button class="btn btn-outline-secondary edit_action" data-todo_id="${id}" data-categort_id="${categoryID}">Edit</button>
+          <button class="btn btn-outline-danger delete_action" >Delete</button>
+        </span>
+      </header>
+      <div>
+        <form class="edit-form" id="${id}">
+          <p>
+            <label for="title">Title: </label>
+            <input type="text" id="title" value="${title}">
+          </p>
+          <p>
+            <label for="description">Description: </label>
+            <textarea name="description" id="description" rows="3" cols="50">${description}</textarea>
+          </p>
+          <p>
+            <label for="change-category">Category: </label>
+            <select id="categories" name="categories">
+              <option value="" disabled selected value>Choose here</option>
+              <option value="1">Movies/Series</option>
+              <option value="2">Restaurants</option>
+              <option value="3">Books</option>
+              <option value="4">Products</option>
+              <option value="NA">Uncategorized</option>
+            </select>
+          </p>
+          <p>
+            <label for="completed">Completed: </label>
+            <input type="checkbox" value="" checked>
+          </p>
+          <p>
+          <label for="submit"></label>
+          <button class="btn btn-outline-success submit-edit-form">Submit!</button>
+          </p>
+        </form>
+      </div>
+    </div>`;
+  }
 
   return $instance;
 };
