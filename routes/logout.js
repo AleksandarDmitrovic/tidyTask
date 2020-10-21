@@ -1,0 +1,13 @@
+const express = require('express');
+const router  = express.Router();
+
+module.exports = () => {
+
+  //Delete- Logout and Cookie Clearing
+  router.delete("/", (req, res) => {
+    req.session = null;
+    res.redirect('/');
+  });
+
+  return router;
+};

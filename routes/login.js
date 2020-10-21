@@ -2,7 +2,7 @@
 const express = require('express');
 const router  = express.Router();
 
-module.exports = (db) => {
+module.exports = () => {
   router.get("/", (req, res) => {
     if (req.session.user_id) {
       res.redirect('/');
@@ -13,12 +13,11 @@ module.exports = (db) => {
 
   router.get('/:id', (req, res) => {
     req.session.user_id = req.params.id;
-    console.log('req.params :', req.params);
     res.redirect('/');
   });
 
-  router.post("/login", (req, res) => {
-    res.redirect('/1');
+  router.post("/", (req, res) => {
+    res.redirect('/login/1');
   });
 
   return router;

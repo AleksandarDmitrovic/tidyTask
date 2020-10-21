@@ -10,6 +10,7 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require("cookie-session");
+const methodOverride = require("method-override");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -35,6 +36,7 @@ app.use(cookieSession({
   name: 'session',
   keys: ['super-long-secret-keys', 'typically-not-embedded-in-code']
 }));
+app.use(methodOverride('_method'));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -43,6 +45,7 @@ const editTodoRoutes = require("./routes/edit-todo");
 const deleteTodoRoutes = require("./routes/delete-todo");
 const newTodoRoutes = require("./routes/new-todo");
 const loginRoutes = require("./routes/login");
+const logoutRoutes = require("./routes/logout");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,6 +54,7 @@ app.use("/api/editTodo", editTodoRoutes(db));
 app.use("/api/deleteTodo", deleteTodoRoutes(db));
 app.use("/api/newTodo", newTodoRoutes(db));
 app.use("/login", loginRoutes(db));
+app.use("/logout", logoutRoutes());
 
 // Note: mount other resources here, using the same pattern above
 
@@ -65,9 +69,6 @@ app.get("/", (req, res) => {
   }
 });
 
-app.get("/login", (req, res) => {
-  res.render("login");
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
