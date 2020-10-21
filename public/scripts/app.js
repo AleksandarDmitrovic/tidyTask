@@ -35,7 +35,7 @@ const createTodoInstance = function(todo) {
             <option value="2">Restaurants</option>
             <option value="3">Books</option>
             <option value="4">Products</option>
-            <option value="null">Uncategorized</option>
+            <option value="">Uncategorized</option>
           </select>
         </p>
         <p>
@@ -116,8 +116,8 @@ $(() => {
         $('.edit-form').trigger("reset");
 
       });
-    })
-  })
+    });
+  });
 
   //Ajax get request of todos data
   $('.filter button').on('click', function(event) {
@@ -133,14 +133,12 @@ $(() => {
       url: `/api/categories/${categoryID}`
     }).done((todos) => {
       $(".todos_container").append(getCategoryName(categoryID));
-      console.log(categoryID);
       for (const todo of todos) {
         const todoInstance = createTodoInstance(todo);
         $(".todos_container").append(todoInstance);
       }
     });
   });
-
 
   //Ajax get request for editing instance form
   $('body').on('click', '.edit_action', function(event) {
@@ -153,11 +151,10 @@ $(() => {
     });
   });
 
-
-//Ajax get request for submitting edit
+  //Ajax get request for submitting edit
   $('body').on('click', '.submit-edit-form', function(event) {
     event.preventDefault();
-    console.log(event);
+
     const newTitle = event.target.form[0].value;
     const newDescription = event.target.form[1].value;
     const newCategory = event.target.form[2].value;
@@ -175,7 +172,6 @@ $(() => {
         id: todoID
       }
     }).done((categoryID) => {
-      // console.log(categoryID);
       if (categoryID === null) {
         categoryID = 'Uncategorized';
       }
@@ -193,8 +189,7 @@ $(() => {
     });
   });
 
-
-//Ajax get request for delete instance
+  //Ajax get request for delete instance
   $('body').on('click', '.delete_action', function(event) {
     event.preventDefault();
 
@@ -220,4 +215,28 @@ $(() => {
       });
     });
   });
+
+  // Ajax to edit profile
+  $('.update-profile').on('click', function(event) {
+    event.preventDefault();
+
+    const newName = event.target.form[0].value;
+    const newEmail = event.target.form[1].value;
+    const newPassword = event.target.form[2].value;
+
+    $.ajax({
+      method: "GET",
+      url: `/api/editprofile`,
+      data: {
+        name: newName,
+        email: newEmail,
+        password: newPassword
+      }
+    }).done((res) => {
+      if (res.command === 'UPDATE') {
+        $('.update-profile-form').trigger("reset");
+      }
+    });
+  });
+
 });

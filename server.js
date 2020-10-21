@@ -46,15 +46,20 @@ const deleteTodoRoutes = require("./routes/delete-todo");
 const newTodoRoutes = require("./routes/new-todo");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
+const editProfileRoutes = require("./routes/edit-profile");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+
+// **Why do we use /api/****? Is there a particular reason?**
+
 app.use("/api/categories", categoryRoutes(db));
 app.use("/api/editTodo", editTodoRoutes(db));
 app.use("/api/deleteTodo", deleteTodoRoutes(db));
 app.use("/api/newTodo", newTodoRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes());
+app.use("/api/editprofile", editProfileRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
@@ -64,6 +69,14 @@ app.use("/logout", logoutRoutes());
 app.get("/", (req, res) => {
   if (req.session.user_id) {
     res.render("index");
+  } else {
+    res.redirect('/login');
+  }
+});
+
+app.get("/editprofile", (req, res) => {
+  if (req.session.user_id) {
+    res.render("edit-profile");
   } else {
     res.redirect('/login');
   }

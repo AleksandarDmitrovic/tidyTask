@@ -9,8 +9,8 @@ module.exports = (db) => {
     const complete = req.query.complete;
     const categoryID = req.query.category_id;
     const id = req.query.id;
-
-    if (categoryID === 'null') {
+    console.log('edit-todo.js');
+    if (categoryID === '') {
       const queryParams = [title, description, complete, id];
       const queryString = `
       UPDATE todos
