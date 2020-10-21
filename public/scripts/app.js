@@ -132,10 +132,10 @@ $(() => {
   });
 
   //Ajax get request of todos data
-  $('.filter button').on('click', function(event) {
+  $('.filter').on('click', function(event) {
     event.preventDefault();
 
-    const category = event.target.parentElement;
+    const category = event.target;
     const categoryID = $(category).data('filter').toString();
 
     $(".todos_container").empty();
