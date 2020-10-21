@@ -19,7 +19,7 @@
     <div id="user_greeting">
       <h4>Welcome User</h4>
     </div>
-    <div id="app-title"><h1>SMART TODO</h1></div>
+    <div id="app-title"><a href="/"><h1>SMART TODO</h1></a></div>
     <div class="nav-buttons">
       <form action="/logout?_method=DELETE" method="POST">
         <button id="logout">Logout</button>
@@ -31,16 +31,16 @@
       <h2>Edit Profile</h2>
       <form method="POST" action="/edit-profile" class="update-profile-form">
         <p>
-          <label for="name">Name: * </label>
+          <label for="name">Name: </label>
           <input type="text" placeholder="Display name" size="30"/>
         </p>
         <p>
-          <label for="email">Email: * </label>
+          <label for="email">Email: </label>
           <input type="text" autocomplete="username" placeholder="me@test.ca" size="30"/>
         </p>
         <p>
           <label for="password">Password: * </label>
-          <input type="password" autocomplete="new-password" placeholder="Enter password" size="30"/>
+          <input type="password" autocomplete="new-password" placeholder="Enter password" size="30" minlength="8"/>
         </p>
         <p>
           <label for="update-button"></label>
