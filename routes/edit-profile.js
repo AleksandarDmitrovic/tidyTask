@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const e = require('express');
 
 module.exports = (db) => {
 
-  router.get("/", (req, res) => {
+  router.get("/editprofile", (req, res) => {
     const  userId  = req.session.user_id;
     const { name, email, password } = req.query;
     const hashedPassword = bcrypt.hashSync(password, 10);

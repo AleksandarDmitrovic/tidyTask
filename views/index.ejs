@@ -20,9 +20,7 @@
     <div id="user_greeting">
       <h4>Welcome <%= user.name %></h4>
     </div>
-    <div id="app-title">
-      <h1>SMART TODO</h1>
-    </div>
+    <div id="app-title"><a href="/"><h1>SMART TODO</h1></a></div>
     <div class="nav-buttons">
       <button class="new-todo-toggle">
         <div id="cross"></div>
@@ -30,15 +28,17 @@
       <button class="settings-button">
         <div class="dropdown">
           <div class="gear"></div>
-          <div class="dropdown-content">
-          <p>Edit Profile</p>
-          </div>
+            <div class="dropdown-content">
+              <a href="/editprofile">
+                <p>Edit Profile</p>
+              </a>
         </div>
+          </div>
       </button>
-      <form action="/logout?_method=DELETE" method="POST">
-        <button id="logout">Logout</button>
-      </form>
     </div>
+    <form action="/logout?_method=DELETE" method="POST">
+      <button id="logout"><div class="fas fa-sign-out-alt"></div></button>
+    </form>
   </nav>
   <main>
     <!-- HOLD CATEGORIES -->

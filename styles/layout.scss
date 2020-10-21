@@ -45,12 +45,15 @@ body {
       margin: 3.1em;
     }
     .nav-buttons {
-      margin: 3.1em;
+      margin: 3.1em 0.5em 3.1em 3.1em;
 
       button{
         margin: 0 0.5em;
       }
 
+      button.new-todo-toggle {
+        margin: 0 1.5em;
+      }
       button.settings-button{
         position: relative;
         display: inline-block;
@@ -59,66 +62,77 @@ body {
           display: none;
           position: absolute;
           background-color: #f9f9f9;
-          min-width: 160px;
+          min-width: 110px;
           box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-          padding: 12px 16px;
+          padding: 12px;
           z-index: 1;
         }
 
         .dropdown:hover .dropdown-content {
           display: block;
+
         }
       }
-    }
 
-    #cross {
-      background: white;
-      height: 25px;
-      position: relative;
-      left: 12px;
-      width: 5px;
-    }
-    #cross:after {
-      background: white;
-      content: "";
-      height: 5px;
-      left: -10px;
-      position: absolute;
-      top: 10px;
-      width: 25px;
-    }
 
-    $icon_size: 1.2em;
 
-    .gear {
-      display: inline-block;
-      position: relative;
-      margin: $icon_size/5;
-      width: $icon_size;
-      height: $icon_size;
-      background: #7C7287;
-      border-radius: 50%;
-      border: $icon_size/3.5 solid white;
-      box-sizing: border-box;
 
-      &:before,
+
+        #cross {
+          background: white;
+          height: 25px;
+          position: relative;
+          left: 12px;
+          width: 5px;
+        }
+        #cross:after {
+          background: white;
+          content: "";
+          height: 5px;
+          left: -10px;
+          position: absolute;
+          top: 10px;
+          width: 25px;
+        }
+
+        $icon_size: 1.2em;
+
+        .gear {
+          display: inline-block;
+          position: relative;
+          margin: $icon_size/5;
+          width: $icon_size;
+          height: $icon_size;
+          background: #7C7287;
+          border-radius: 50%;
+          border: $icon_size/3.5 solid white;
+          box-sizing: border-box;
+
+          &:before,
+          &:after {
+            content: '×';
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-family: "times new roman";
+            font-weight: bold;
+            font-size: $icon_size*2.5;
+            color: white;
+          }
+
       &:after {
-        content: '×';
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        font-family: "times new roman";
-        font-weight: bold;
-        font-size: $icon_size*2.5;
-        color: white;
+        transform: translate(-50%,-50%) rotate(45deg);
       }
+    }
 
-  &:after {
-    transform: translate(-50%,-50%) rotate(45deg);
   }
-}
+    .fa-sign-out-alt {
+      color: white;
+      font-size: 2em;
+      margin-right: 3.1em;
+    }
 
     div#app-title{
       margin: auto;

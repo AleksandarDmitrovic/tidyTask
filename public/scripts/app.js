@@ -12,7 +12,6 @@ const createTodoInstance = function(todo) {
   <div class="to-do-instance">
     <header>
       <p>${title}</p>
-      <p class="description">${todo.description}</p>
       <span>
         <button class="btn btn-outline-secondary edit_action" data-todo_id="${todo.id}" data-categort_id="${todo.categoryID}">Edit</button>
         <button class="btn btn-outline-danger delete_action" >Delete</button>
@@ -137,7 +136,7 @@ $(() => {
     event.preventDefault();
 
     const category = event.target.parentElement;
-    const categoryID = ($(category).data('filter')).toString();
+    const categoryID = $(category).data('filter').toString();
 
     $(".todos_container").empty();
 

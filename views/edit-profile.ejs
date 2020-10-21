@@ -17,12 +17,12 @@
 <body>
   <nav>
     <div id="user_greeting">
-      <h4>Welcome User</h4>
+      <h4>Welcome <%= user.name %></h4>
     </div>
     <div id="app-title"><a href="/"><h1>SMART TODO</h1></a></div>
-    <div class="nav-buttons">
+    <div>
       <form action="/logout?_method=DELETE" method="POST">
-        <button id="logout">Logout</button>
+        <button id="logout"><div class="fas fa-sign-out-alt"></div></button>
       </form>
     </div>
   </nav>
