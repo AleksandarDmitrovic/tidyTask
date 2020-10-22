@@ -9,10 +9,11 @@ module.exports = (db) => {
     const complete = req.query.complete;
     const categoryID = req.query.category_id;
     const id = req.query.id;
+    const userID = req.session.user_id;
 
 
     if (categoryID === 'NA') {
-      const queryParams = [title, description, complete, id];
+      const queryParams = [title, description, complete, id, userID];
       const queryString = `
       UPDATE todos
       SET title = $1,
@@ -20,6 +21,7 @@ module.exports = (db) => {
       complete = $3,
       category_id = null
       WHERE todos.id = $4
+      AND user_id = $5
       RETURNING *;`;
 
       db.query(queryString, queryParams)
@@ -33,13 +35,14 @@ module.exports = (db) => {
             .json({ error: err.message });
         });
     } else if (categoryID === "") {
-      const queryParams = [title, description, complete, id];
+      const queryParams = [title, description, complete, id, userID];
       const queryString = `
       UPDATE todos
       SET title = $1,
       description = $2,
       complete = $3
       WHERE todos.id = $4
+      AND user_id = $5
       RETURNING *;`;
 
       db.query(queryString, queryParams)
@@ -53,7 +56,7 @@ module.exports = (db) => {
             .json({ error: err.message });
         });
     }  else {
-      const queryParams = [title, description, complete, categoryID, id];
+      const queryParams = [title, description, complete, categoryID, id, userID];
       const queryString = `
       UPDATE todos
       SET title = $1,
@@ -61,6 +64,7 @@ module.exports = (db) => {
       complete = $3,
       category_id = $4
       WHERE todos.id = $5
+      AND user_id = $6
       RETURNING *;`;
 
       db.query(queryString, queryParams)
