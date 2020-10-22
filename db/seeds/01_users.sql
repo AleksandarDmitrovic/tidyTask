@@ -1,4 +1,4 @@
-insert into users (name, email, password) values ('Jhon Hanney', 'jhanney0@gmail.com', '$2b$10$dHaDELTlnfrlMplszy7P1eZibQ4IHD1Dss3eI.dneqPX1SeEKhSu2'); -- hashed password 123
+insert into users (name, email, password) values ('Jhon Hanney', 'user@example.com', '$2b$10$dHaDELTlnfrlMplszy7P1eZibQ4IHD1Dss3eI.dneqPX1SeEKhSu2'); -- hashed password 123
 insert into users (name, email, password) values ('Alon Keynes', 'akeynes1@vistaprint.com', 'y85bg04yWYE');
 insert into users (name, email, password) values ('Layla Hecks', 'lhecks2@merriam-webster.com', 'lMeiJ7l2U');
 insert into users (name, email, password) values ('Arv Barrable', 'abarrable3@howstuffworks.com', '3jMMNY5dK');

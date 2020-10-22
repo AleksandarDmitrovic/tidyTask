@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 module.exports = (db) => {
   const userEmailSearch = async (email) => {
 
-
     const results = await db.query(`
     SELECT email FROM users
     WHERE email = $1;

@@ -1,8 +1,22 @@
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const bcrypt = require("bcrypt");
 
-module.exports = () => {
+module.exports = (db) => {
+  const userInfoSearch = async (email) => {
+
+    const results = await db.query(`
+    SELECT email, password, id FROM users
+    WHERE email = $1;
+    `, [email])
+      .then(res => {
+        return res.rows[0];
+      });
+
+    return results;
+  }
+
   router.get("/", (req, res) => {
     if (req.session.user_id) {
       res.redirect('/');
@@ -11,13 +25,35 @@ module.exports = () => {
     }
   });
 
-  router.get('/:id', (req, res) => {
-    req.session.user_id = req.params.id;
-    res.redirect('/');
-  });
+  // router.get('/:id', (req, res) => {
+  //   req.session.user_id = req.params.id;
+  //   res.redirect('/');
+  // });
 
   router.post("/", (req, res) => {
-    res.redirect('/login/1');
+    const { email, password } = req.body;
+    console.log('req.body :', req.body);
+
+    if (email === '' || password === '') {
+      return res.status(404).send("Empty email or password field");
+    }
+
+    userInfoSearch(email).then(userInfo => {
+      console.log('userInfo :', userInfo);
+
+      if (userInfo === undefined) {
+        return res.status(404).send("Incorrect Email or Password");
+      }
+      console.log('userInfo :', userInfo.password);
+      console.log('!bcrypt.compareSync(password, userInfo.password :', (!bcrypt.compareSync(password, userInfo.password)));
+      if (!bcrypt.compareSync(password, userInfo.password)) {
+        return res.status(404).send("Incorrect Email or Password");
+      }
+
+      req.session.user_id = userInfo.id;
+      res.redirect('/');
+    });
+
   });
 
   return router;
