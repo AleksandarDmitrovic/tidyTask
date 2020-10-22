@@ -5,7 +5,7 @@ module.exports = () => {
 
   //Delete- Logout and Cookie Clearing
   router.delete("/", (req, res) => {
-    req.session = null;
+    req.session.user_id = null;
     res.redirect('/');
   });
 

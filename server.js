@@ -69,28 +69,24 @@ app.use("/register", registerRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-const users = {
-  "1": {
-    "name": "Jason"
-  }
-};
-const userInfoSearch = async (id) => {
 
-  const results = await db.query(`
-  SELECT name FROM users
-  WHERE id = $1;
-  `, [id])
-    .then(res => {
-      return res.rows[0];
-    });
-
-  return results;
-}
 
 app.get("/", (req, res) => {
-  const cookieID = req.session['user_id'];
+  const userInfoSearch = async (id) => {
+
+    const results = await db.query(`
+    SELECT name FROM users
+    WHERE id = $1;
+    `, [id])
+      .then(res => {
+        return res.rows[0];
+      });
+
+    return results;
+  }
+
+  const cookieID = req.session.user_id;
   userInfoSearch(cookieID).then(userName => {
-  console.log('userName -->:', userName.name);
 
     const templateVars = { userName };
     if (req.session.user_id) {

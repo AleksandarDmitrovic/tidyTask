@@ -25,11 +25,6 @@ module.exports = (db) => {
     }
   });
 
-  // router.get('/:id', (req, res) => {
-  //   req.session.user_id = req.params.id;
-  //   res.redirect('/');
-  // });
-
   router.post("/", (req, res) => {
     const { email, password } = req.body;
     console.log('req.body :', req.body);

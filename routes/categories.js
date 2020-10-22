@@ -5,6 +5,8 @@ module.exports = (db) => {
   //Queries selecting todos by category
   router.get("/:id", (req, res) => {
     const categoryID = req.params.id;
+    const cookieID = req.session.user_id;
+    console.log('cookieID :', cookieID);
 
     if (categoryID === 'All') {
       db.query(`SELECT * FROM todos;`)
