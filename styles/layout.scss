@@ -1,5 +1,7 @@
 // See: https://sass-lang.com/
 
+$break-small: 1080px;
+
 body {
   background-color: white;
 
@@ -162,7 +164,7 @@ body {
       height: 20em;
       margin: 10em auto 2em 10em;
       border-radius: 3em;
-      padding: 5em;
+      padding: 4em;
     }
 
     section.profile {
@@ -251,15 +253,12 @@ body {
       }
 
       div.fa-clipboard-list {
+        display: flex;
         font-size: 9em;
-        margin: 2em 4.5em;
+        margin: 2em auto;
         text-align: center;
+        flex-direction: column;
 
-        br {
-          display: block; /* makes it have a width */
-          content: ""; /* clears default height */
-          margin-top: 0.5em; /* change this to whatever height you want it */
-        }
 
         p {
           font-size: 18px;
@@ -280,15 +279,6 @@ body {
         header {
           display: flex;
           justify-content: space-between;
-
-
-          p {
-            margin-top: 1.1em;
-            width: 250px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
 
           .description {
             color: grey;

@@ -17,8 +17,10 @@ const createTodoInstance = function(todo) {
     $instance += `
     <div class="to-do-instance">
       <header>
-        <p>${title}</p>
-        <p class="description">${description}</p>
+        <div>
+          <p>${title}</p>
+          <p class="description">${description}</p>
+        </div>
         <span>
           <button class="btn btn-outline-secondary edit_action" data-todo_id="${id}" data-categort_id="${categoryID}">Edit</button>
           <button class="btn btn-outline-danger delete_action" >Delete</button>
@@ -60,8 +62,10 @@ const createTodoInstance = function(todo) {
     $instance += `
     <div class="to-do-instance completed">
       <header>
-        <p>${title}</p>
-        <p class="description">${description}</p>
+        <div>
+          <p>${title}</p>
+          <p class="description">${description}</p>
+        </div>
         <span>
           <button class="btn btn-outline-secondary edit_action" data-todo_id="${id}" data-categort_id="${categoryID}">Edit</button>
           <button class="btn btn-outline-danger delete_action" >Delete</button>
