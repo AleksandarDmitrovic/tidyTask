@@ -21,24 +21,26 @@
       <h4>Welcome <%= user.name %></h4>
     </div>
     <div id="app-title"><a href="/"><h1>SMART TODO</h1></a></div>
-    <div class="nav-buttons">
-      <button class="new-todo-toggle">
-        <div id="cross"></div>
-      </button>
-      <button class="settings-button">
-        <div class="dropdown">
-          <div class="gear"></div>
-            <div class="dropdown-content">
-              <a href="/editprofile">
-                <p>Edit Profile</p>
-              </a>
-        </div>
+      <div class="interactive">
+      <div class="nav-buttons">
+        <button class="new-todo-toggle">
+          <div id="cross"></div>
+        </button>
+        <button class="settings-button">
+          <div class="dropdown">
+            <div class="gear"></div>
+              <div class="dropdown-content">
+                <a href="/editprofile">
+                  <p>Edit Profile</p>
+                </a>
           </div>
-      </button>
+            </div>
+        </button>
+        <form action="/logout?_method=DELETE" method="POST">
+          <button id="logout"><div class="fas fa-sign-out-alt"></div></button>
+        </form>
+      </div>
     </div>
-    <form action="/logout?_method=DELETE" method="POST">
-      <button id="logout"><div class="fas fa-sign-out-alt"></div></button>
-    </form>
   </nav>
   <main>
     <!-- HOLD CATEGORIES -->

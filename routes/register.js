@@ -24,7 +24,6 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     let id;
     const { email, password, name } = req.body;
-    console.log('req.body :', req.body);
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     if (email === '' || password === '' || name === '') {
@@ -32,9 +31,6 @@ module.exports = (db) => {
     }
 
     userEmailSearch(email).then(emailFound => {
-      console.log('emailFound :', emailFound);
-      console.log('emailFound.length === 0 :', emailFound.length === 0);
-
       if (emailFound.length !== 0) {
         return res.status(404).send("User Email Already Exists");
       }

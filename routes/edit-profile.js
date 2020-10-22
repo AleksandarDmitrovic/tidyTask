@@ -53,7 +53,6 @@ module.exports = (db) => {
 
     db.query(queryString, queryParams)
       .then((data) => {
-        console.log('hit');
         res.json(data);
       })
       .catch(err => {

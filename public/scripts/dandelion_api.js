@@ -10,11 +10,9 @@ const checkCategory = (info) => {
   }
 
   let topCategory = info[0].name;
-  // console.log('topCategory :', topCategory);
 
   for (const key in checkObj) {
     if (key === topCategory) {
-      // console.log(checkObj[key]);
       return checkObj[key];
     }
   }
@@ -30,9 +28,8 @@ const checkDandelionAPI = (search) => {
       // Returns null if no category is found
       const results = JSON.parse(res);
       if ((results.categories).length === 0) {
-            console.log('error no category found my dandelion api');
-            return null;
-          }
+        return null;
+      }
       let categoryObj = results.categories;
       return checkCategory(categoryObj);
     });

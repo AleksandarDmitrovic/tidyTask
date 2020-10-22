@@ -11,7 +11,6 @@ module.exports = (db) => {
     const userID  = 1;
     checkDandelionAPI(title)
       .then(category_id => {
-        console.log('category_id :', category_id);
         const queryParams = [title, description, userID, category_id];
         const queryString = `
         INSERT INTO todos (title, description, user_id, category_id)

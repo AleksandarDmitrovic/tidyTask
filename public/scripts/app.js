@@ -110,7 +110,7 @@ const createTodoInstance = function(todo) {
 
 const getCategoryName = function(id) {
   let category = "";
-  // console.log(id);
+
   switch (id) {
   case '1':
     category += "Movies / Series";
@@ -290,10 +290,6 @@ $(() => {
     const newName = event.target.form[0].value;
     const newEmail = event.target.form[1].value;
     const newPassword = event.target.form[2].value;
-
-    console.log(newName);
-    console.log(newEmail);
-    console.log(newPassword);
 
     $.ajax({
       method: "POST",
