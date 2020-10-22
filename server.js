@@ -60,7 +60,7 @@ app.use("/deleteTodo", deleteTodoRoutes(db));
 app.use("/editprofile", editProfileRoutes(db));
 app.use("/editTodo", editTodoRoutes(db));
 app.use("/login", loginRoutes(db));
-app.use("/logout", logoutRoutes());
+app.use("/logout", logoutRoutes(db));
 app.use("/newTodo", newTodoRoutes(db));
 app.use("/register", registerRoutes(db));
 
@@ -69,28 +69,32 @@ app.use("/register", registerRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-const users = {
-  "1": {
-    "name": "Jason"
-  }
-};
+
 
 app.get("/", (req, res) => {
-  const templateVars = { user: users['1'] };
-  if (req.session.user_id) {
-    res.render("index", templateVars);
-  } else {
-    res.redirect('/login');
-  }
-});
+  const userInfoSearch = async (id) => {
 
-app.get("/editprofile", (req, res) => {
-  const templateVars = { user: users['1'] };
-  if (req.session.user_id) {
-    res.render("edit-profile", templateVars);
-  } else {
-    res.redirect('/login');
+    const results = await db.query(`
+    SELECT name FROM users
+    WHERE id = $1;
+    `, [id])
+      .then(res => {
+        return res.rows[0];
+      });
+
+    return results;
   }
+
+  const cookieID = req.session.user_id;
+  userInfoSearch(cookieID).then(userName => {
+
+    const templateVars = { userName };
+    if (req.session.user_id) {
+      res.render("index", templateVars);
+    } else {
+      res.redirect('/login');
+    }
+  });
 });
 
 

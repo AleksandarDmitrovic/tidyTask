@@ -3,6 +3,31 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
+  router.get("/", (req, res) => {
+    const userInfoSearch = async (id) => {
+
+      const results = await db.query(`
+      SELECT name FROM users
+      WHERE id = $1;
+      `, [id])
+        .then(res => {
+          return res.rows[0];
+        });
+
+      return results;
+    }
+
+    const cookieID = req.session.user_id;
+    userInfoSearch(cookieID).then(userName => {
+      const templateVars = { userName };
+      if (req.session.user_id) {
+        res.render("edit-profile", templateVars);
+      } else {
+        res.redirect('/login');
+      }
+    });
+
+  });
 
   router.post("/", (req, res) => {
     const  userId  = req.session.user_id;
