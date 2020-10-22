@@ -83,7 +83,7 @@ app.get("/", (req, res) => {
       });
 
     return results;
-  }
+  };
 
   const cookieID = req.session.user_id;
   userInfoSearch(cookieID).then(userName => {
