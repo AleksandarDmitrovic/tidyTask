@@ -8,7 +8,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     const title = req.query.title;
     const description = req.query.description;
-    const userID  = 1;
+    const userID  = req.session.user_id;
     checkDandelionAPI(title)
       .then(category_id => {
         const queryParams = [title, description, userID, category_id];
