@@ -15,39 +15,40 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
-
 <body>
   <nav>
     <div id="user_greeting">
-      <h3>Welcome User</h1>
+      <h4>Welcome <%= user.name %></h4>
     </div>
-    <div id="app-title">
-      <h1>SMART TODO</h1>
-    </div>
+    <div id="app-title"><a href="/"><h1>SMART TODO</h1></a></div>
     <div class="nav-buttons">
       <button class="new-todo-toggle">
-        <div><b>Add</b> a todo</div><i class="fas fa-angle-double-down"></i>
+        <div id="cross"></div>
       </button>
-      <button id="settings-button">Settings</button>
-      <form action="/logout?_method=DELETE" method="POST">
-        <button id="logout">Logout</button>
-      </form>
+      <button class="settings-button">
+        <div class="dropdown">
+          <div class="gear"></div>
+            <div class="dropdown-content">
+              <a href="/editprofile">
+                <p>Edit Profile</p>
+              </a>
+        </div>
+          </div>
+      </button>
     </div>
+    <form action="/logout?_method=DELETE" method="POST">
+      <button id="logout"><div class="fas fa-sign-out-alt"></div></button>
+    </form>
   </nav>
   <main>
     <!-- HOLD CATEGORIES -->
     <div class="left_menu_container">
-      <div class="left_menu">
-        <div class="category_container">
-
-          <ul class="filter" data-filter="All" id="filter_all"><button>All</button></ul>
-          <ul class="filter" data-filter="1" id="filter_movies"><button>Movies / Series</button></ul>
-          <ul class="filter" data-filter="2" id="filter_restaurants"><button>Restaurants</button></ul>
-          <ul class="filter" data-filter="3" id="filter_books"><button>Books</button></ul>
-          <ul class="filter" data-filter="4" id="filter_products"><button>Products</button></ul>
-          <ul class="filter" data-filter="Uncategorized" id="filter_uncategorized"><button>Uncategorized</button></ul>
-
-        </div>
+      <div class="category_container">
+        <ul class="filter" data-filter="1" id="filter_movies">Movies / Series</ul>
+        <ul class="filter" data-filter="2" id="filter_restaurants">Restaurants</ul>
+        <ul class="filter" data-filter="3" id="filter_books">Books</ul>
+        <ul class="filter" data-filter="4" id="filter_products">Products</ul>
+        <ul class="filter" data-filter="Uncategorized" id="filter_uncategorized">Uncategorized</ul>
       </div>
     </div>
     <!-- HOLD INSTANCES AND NEW TODO FORM -->
@@ -62,7 +63,7 @@
             <label for="description">Description: </label>
             <textarea name="description" id="description" rows="3" cols="50" placeholder="Description..."></textarea>
           </p>
-          <button class="btn btn-outline-success" id="new_todo" type="submit">Submit!</button>
+          <button class="btn btn-success" id="new_todo" type="submit">Submit!</button>
       </section>
       <div class="todos_container">
         <h2></h2>

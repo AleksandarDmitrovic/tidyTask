@@ -10,7 +10,29 @@ module.exports = (db) => {
     const categoryID = req.query.category_id;
     const id = req.query.id;
 
-    if (categoryID === '') {
+
+    if (categoryID === 'NA') {
+      const queryParams = [title, description, complete, id];
+      const queryString = `
+      UPDATE todos
+      SET title = $1,
+      description = $2,
+      complete = $3,
+      category_id = null
+      WHERE todos.id = $4
+      RETURNING *;`;
+
+      db.query(queryString, queryParams)
+        .then((data) => {
+          const categoryID = data.rows[0].category_id;
+          res.json(categoryID);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    } else if (categoryID === "") {
       const queryParams = [title, description, complete, id];
       const queryString = `
       UPDATE todos
@@ -30,7 +52,7 @@ module.exports = (db) => {
             .status(500)
             .json({ error: err.message });
         });
-    } else {
+    }  else {
       const queryParams = [title, description, complete, categoryID, id];
       const queryString = `
       UPDATE todos

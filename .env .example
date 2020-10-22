@@ -5,3 +5,5 @@ DB_NAME=midterm
 # Uncomment and set to true for Heroku
 # DB_SSL=true if heroku
 DB_PORT=5432
+DANDELION_API_TOKEN=#
+DANDELION_MODEL=#

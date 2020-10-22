@@ -9,8 +9,11 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+
+// Middleware
 const cookieSession = require("cookie-session");
 const methodOverride = require("method-override");
+
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -41,29 +44,50 @@ app.use(methodOverride('_method'));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const categoryRoutes = require("./routes/categories");
-const editTodoRoutes = require("./routes/edit-todo");
 const deleteTodoRoutes = require("./routes/delete-todo");
-const newTodoRoutes = require("./routes/new-todo");
+const editProfileRoutes = require("./routes/edit-profile");
+const editTodoRoutes = require("./routes/edit-todo");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
+const newTodoRoutes = require("./routes/new-todo");
+const registerRoutes = require("./routes/register");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/categories", categoryRoutes(db));
-app.use("/api/editTodo", editTodoRoutes(db));
-app.use("/api/deleteTodo", deleteTodoRoutes(db));
-app.use("/api/newTodo", newTodoRoutes(db));
+
+app.use("/categories", categoryRoutes(db));
+app.use("/deleteTodo", deleteTodoRoutes(db));
+app.use("/editprofile", editProfileRoutes(db));
+app.use("/editTodo", editTodoRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes());
+app.use("/newTodo", newTodoRoutes(db));
+app.use("/register", registerRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+const users = {
+  "1": {
+    "name": "Jason"
+  }
+};
+
 app.get("/", (req, res) => {
+  const templateVars = { user: users['1'] };
   if (req.session.user_id) {
-    res.render("index");
+    res.render("index", templateVars);
+  } else {
+    res.redirect('/login');
+  }
+});
+
+app.get("/editprofile", (req, res) => {
+  const templateVars = { user: users['1'] };
+  if (req.session.user_id) {
+    res.render("edit-profile", templateVars);
   } else {
     res.redirect('/login');
   }
