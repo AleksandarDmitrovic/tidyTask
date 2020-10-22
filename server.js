@@ -97,15 +97,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/editprofile", (req, res) => {
-  const templateVars = { user: users['1'] };
-  if (req.session.user_id) {
-    res.render("edit-profile", templateVars);
-  } else {
-    res.redirect('/login');
-  }
-});
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

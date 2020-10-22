@@ -301,7 +301,8 @@ $(() => {
       }
     }).done((res) => {
       if (res.command === 'UPDATE') {
-        $('.update-profile-form').trigger("reset");
+        location.reload(true);
+
       }
     });
   });
