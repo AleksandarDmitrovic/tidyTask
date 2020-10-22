@@ -72,7 +72,7 @@ app.use("/register", registerRoutes(db));
 
 
 app.get("/", (req, res) => {
-  const userInfoSearch = async (id) => {
+  const userInfoSearch = async(id) => {
 
     const results = await db.query(`
     SELECT name FROM users
