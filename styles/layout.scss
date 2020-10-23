@@ -6,6 +6,8 @@ body {
   background-color: white;
 
   h1 {
+    font-size: 48px;
+    font-family: 'Caveat', cursive;
     color: white;
   }
 
@@ -51,7 +53,7 @@ body {
 
     .interactive {
       position: fixed;
-      top: 3%;
+      top: 3.5%;
       right: 5%;
     }
 
@@ -131,7 +133,7 @@ body {
   }
     .fa-sign-out-alt {
       position: fixed;
-      top: 3%;
+      top: 3.5%;
       right: 2.5%;
       color: white;
       font-size: 2em;
@@ -140,7 +142,7 @@ body {
 
     div#app-title{
       position: fixed;
-      top: 1%;
+      top: -0.5%;
       left: 45%;
     }
   }

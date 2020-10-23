@@ -39,8 +39,7 @@ module.exports = (db) => {
       if (userInfo === undefined) {
         return res.status(404).send("Incorrect Email or Password");
       }
-      console.log('userInfo :', userInfo.password);
-      console.log('!bcrypt.compareSync(password, userInfo.password :', (!bcrypt.compareSync(password, userInfo.password)));
+
       if (!bcrypt.compareSync(password, userInfo.password)) {
         return res.status(404).send("Incorrect Email or Password");
       }
