@@ -44,9 +44,9 @@ module.exports = { checkDandelionAPI };
 // checkDandelionAPI(`A PROMISED LAND`); //WORKS
 // checkDandelionAPI(`TROUBLES IN PARADISE by Elin Hilderbrand`); //FAILS
 // checkDandelionAPI(`harry potter`); //WORKS
-// checkDandelionAPI(`Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones`); //MISS CATEGORIZES TO MOVIES
 // checkDandelionAPI(`THE VANISHING HALF: A NOVEL byBrit Bennett`); //WORKS
 // checkDandelionAPI(`One Hundred Years of Solitude`); //WORKS
+// checkDandelionAPI(`Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones`); //MISS CATEGORIZES TO MOVIES
 
 
 // MOVIES
