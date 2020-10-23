@@ -41,36 +41,36 @@ module.exports = { checkDandelionAPI };
 //Search Query Tests
 
 // BOOKS
-// checkDandelionAPI(`A PROMISED LAND`); //WORKS
-// checkDandelionAPI(`TROUBLES IN PARADISE by Elin Hilderbrand`); //FAILS
-// checkDandelionAPI(`harry potter`); //WORKS
-// checkDandelionAPI(`Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones`); //MISS CATEGORIZES TO MOVIES
-// checkDandelionAPI(`THE VANISHING HALF: A NOVEL byBrit Bennett`); //WORKS
-// checkDandelionAPI(`One Hundred Years of Solitude`); //WORKS
+// A PROMISED LAND                                                           //WORKS
+// TROUBLES IN PARADISE by Elin Hilderbrand                                  //FAILS
+// harry potter                                                              //WORKS
+// THE VANISHING HALF: A NOVEL byBrit Bennett                                //WORKS
+// One Hundred Years of Solitude                                             //WORKS
+// Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones //MISS CATEGORIZES TO MOVIES
 
 
 // MOVIES
-// checkDandelionAPI(`Titanic`);  //WORKS
-// checkDandelionAPI(`Terminator`); //WORKS
-// checkDandelionAPI(`BORAT SUBSEQUENT MOVIEFILM`); //WORKS
-// checkDandelionAPI(`Ratatouille`); //WORKS
-// checkDandelionAPI(`The Wizard of Oz`); //WORKS
-// checkDandelionAPI(`TO ALL THE BOYS: P.S. I STILL LOVE YOU`); //MISS CATEGORIZES TO BOOKS
-// checkDandelionAPI(`the movies`); //FAILS
+// Titanic                                  //WORKS
+// Terminator                               //WORKS
+// BORAT SUBSEQUENT MOVIEFILM               //WORKS
+// Ratatouille                              //WORKS
+// The Wizard of Oz                         //WORKS
+// TO ALL THE BOYS: P.S. I STILL LOVE YOU   //MISS CATEGORIZES TO BOOKS
+// the movies                               //FAILS
 
 // RESTAURANTS
-// checkDandelionAPI(`Yuga Traditional Indian Kitchen and Bar`);  //WORKS
-// checkDandelionAPI(`Boston Pizza`); //WORKS
-// checkDandelionAPI(`The Bank and Baron Pub`); //WORKS
-// checkDandelionAPI(`Cactus Club Cafe`); //WORKS
-// checkDandelionAPI(`The Old Spaghetti Factory`); //WORKS
-// checkDandelionAPI(`IKUSA Izakaya & Tokyo Market`); //WORKS
-// checkDandelionAPI(`Jollibee`); //WORKS
-// checkDandelionAPI(`Fergus & Bix`); //FAILS
+// Yuga Traditional Indian Kitchen and Bar  //WORKS
+// Boston Pizza                             //WORKS
+// The Bank and Baron Pub                   //WORKS
+// Cactus Club Cafe                         //WORKS
+// The Old Spaghetti Factory                //WORKS
+// IKUSA Izakaya & Tokyo Market             //WORKS
+// Jollibee                                 //WORKS
+// Fergus & Bix                             //FAILS
 
 // PRODUCTS
-// checkDandelionAPI(`Nintendo Switch`); //WORKS
-// checkDandelionAPI(`iPhone 12 Pro`); //WORKS
-// checkDandelionAPI(`2020 Accord Sedan Honda`); //WORKS
-// checkDandelionAPI(`Philips Sunrise Simulation Bedside Light & FM Radio Alarm Clock`); //WORKS
-// RCA 40" Roku Smart TV, 1080P //WORKA
+// Nintendo Switch                          //WORKS
+// iPhone 12 Pro                            //WORKS
+// 2020 Accord Sedan Honda                  //WORKS
+// Philips Sunrise Simulation Alarm Clock   //WORKS
+// RCA 40" Roku Smart TV, 1080P             //WORKS
