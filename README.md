@@ -8,7 +8,7 @@ Tidy task is an auto categorizing to-do list organizational web application. Thi
 
 #### Homepage
 
-!["Registration & Homepage"]()
+!["Registration & Homepage"](https://github.com/AleksandarDmitrovic/tidyTask/blob/master/docs/register&homepage.gif?raw=true)
 
 #### Make, Edit, Delete A Todo
 
