@@ -12,19 +12,19 @@ Tidy task is an auto categorizing to-do list organizational web application. Thi
 
 #### Make, Edit, Delete A Todo
 
-!["Make, Edit, Delete Todo"]()
+!["Make, Edit, Delete Todo"](https://github.com/AleksandarDmitrovic/tidyTask/blob/master/docs/make&delete%20_todo.gif?raw=true)
 
 #### Auto Categorizing Book
 
-!["Auto Categorizing Book"]()
+!["Auto Categorizing Book"](https://github.com/AleksandarDmitrovic/tidyTask/blob/master/docs/book-todo.gif?raw=true)
 
 #### Auto Categorizing Product
 
-!["Auto Categorizing Product"]()
+!["Auto Categorizing Product"](https://github.com/AleksandarDmitrovic/tidyTask/blob/master/docs/product-todo.gif?raw=true)
 
 #### Auto Categorizing Restaurant
 
-!["Auto Categorizing Restaurant"]()
+!["Auto Categorizing Restaurant"](https://github.com/AleksandarDmitrovic/tidyTask/blob/master/docs/restaurant-todo.gif?raw=true)
 
 ## Stack
 
