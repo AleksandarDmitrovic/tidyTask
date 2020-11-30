@@ -39,14 +39,16 @@ Tidy task is an auto categorizing to-do list organizational web application. Thi
 
 ## Getting Started
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information 
-3. Sign up at https://dandelion.eu/ to get the Dandelion API token. Enter your token in the .env file. To create the test classification model run the command  `curl -i --data-urlencode "data@model.json" -d "token=<YOUR_TOKEN>"   http://api.dandelion.eu/datatxt/cl/models/v1`(Docs: https://dandelion.eu/docs/api/datatxt/cl/models/v1/). Copy the model id number into the .env file.
-4. Install dependencies: `npm i`
-5. Reset database: `npm run db:reset`
-6. Run the server: `npm run local`
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies: `npm i`
+3. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env` Setup pg database.
+4. Update the .env file with your correct local information 
+5. Sign up at https://dandelion.eu/ to get the Dandelion API token. Enter your token in the .env file. To create the test classification model run the command  `curl -i --data-urlencode "data@model.json" -d "token=<YOUR_TOKEN>"   http://api.dandelion.eu/datatxt/cl/models/v1`(Docs: https://dandelion.eu/docs/api/datatxt/cl/models/v1/). Copy the model id number into the .env file.
+
+6. Reset database: `npm run db:reset`
+7. Run the server: `npm run local`
   - Note: nodemon is used, so you should not have to restart your server
-7. Visit `http://localhost:8080/`
+8. Visit `http://localhost:8080/`
 
 ## Dependencies
 
